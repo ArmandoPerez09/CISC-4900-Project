@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:700&display=swap');
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
+	
+}
+html{
+	scroll-behavior: smooth;
+}
+body{
+	background: url(/img/bg1.jpg) fixed;
+}
+.front-page{
+	
+	background-size: cover;
+	height: 100vh;
+}
+
+.navbar{
+	display: inline-flex;
+    justify-content: space-between;
+	height: 80px;
+	width: 100%;
+	background: rgba(0,0,0,0.1);
+}
+.navbar div{
+	padding: 20px 120px;
+}
+.navbar .logo{
+	width: 170px;
+	height: auto;
+	border: double;
+}
+.nyc-map{
+	height: 500px;
+	width: 900px;
+	outline: 2px black solid;
+	border-radius: 10px;
+}
+.navbar ul{
+	float: right;
+	margin-right: 30px;
+}
+.navbar li{
+	margin: 0 8px;
+	display: inline;
+	line-height: 80px;
+    
+}
+.navbar a{
+	font-size: 20px;
+	font-family: 'Roboto', sans-serif;
+	color: white;
+	padding: 6px 13px;
+	text-decoration: none;
+	background:rgba(0,0,0,0.2);
+	border-radius: 15px;
+
+}
+.navbar a.active,
+.navbar a:hover{
+	background: red;
+	border-radius: 15px;
+    
+}
+.front-page .center{
+	position: absolute;
+	left: 50%;
+	top: 55%;
+	transform: translate(-50%, -50%);
+	font-family: sans-serif;
+	user-select: none;
+	
+}
+
+.center{
+    display: grid;
+	grid-template-columns: 1fr  500px;
+	align-items: center;
+	justify-self: center;
+	margin: 0;
+	width: 70%;
+}
+.center-left{
+    margin-top: 150px;
+    display: grid;
+}
+.center .center-left ul{
+    grid-template-columns: repeat(4,1.2fr);
+    grid-column-gap: 1px;
+    grid-row-gap: 1px;
+}
+.center .center-right button{
+	margin-left: 200px;
+	margin-top: 0px;
+
+}
+.corn-guy{
+    width: auto;
+	padding-left: 3rem;
+}
+
+.center h1{
+	color: black;
+	font-size: 70px;
+	width: 900px;
+	font-weight: bold;
+	text-align: center;
+}
+.center h2{
+	color: black;
+	font-size: 70px;
+	font-weight: bold;
+	margin-top: 10px;
+	width: 885px;
+	text-align: center;
+}
+.center button{
+	margin: 35px 380px;
+}
+
+.center .center-left li{
+    display: inline-flex;
+    margin: 8px;
+	font-family: 'Roboto', sans-serif;
+    background:rgba(0,0,0,0.2);
+	border-radius: 15px;
+    justify-content: center;
+	padding: 0.7rem;
+}
+.center .center-left ul li span{
+   color: white;
+   padding-right: 2px;
+}
+.center .center-left ul li:hover{
+
+    background:rgba(0,0,0,0.4);
+
+}
+.center .center-left ul li a{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+
+.trending-page {
+
+	margin: 1rem;
+	height: 100%;
+	display: inline-flex;
+	align-items: center;
+	justify-items: center;
+	width: 100%;
+	
+}
+.trending-page div{
+	padding: 2rem;
+	align-items: center;
+	justify-self: center;
+}
+ button{
+	height: 50px;
+	width: 150px;
+	font-size: 18px;
+	font-weight: 600;
+	color: white;
+	background: red;
+	outline: none;
+	cursor: pointer;
+	border: 1px solid black;
+	border-radius: 25px;
+	transition: .4s;
+  
+}
+
+ button:hover{
+	background: #cc0000;
+}
+
+.trending-page img {
+	padding: 2px;
+	border-radius: 15px;
+	align-items: center;
+	justify-self: center;
+}
+.trending-page img:hover {
+	transform: scale(1.03);
+	transition: .3s ease;
+
+}
+
+.trending-page h1 {
+	background:rgba(0,0,0,0.2);
+	color: white;
+	text-align:center;
+	padding: 1rem;
+	border-radius: 10px;
+}
+
+/*about page*/
+
+.cards{
+	display: flex;
+	margin-top: 10%;
+	align-items: center;
+	justify-content: center;
+	min-height: 400px;
+    grid-template-columns: 33% 33% 33%;
+
+	width: 100%;
+}
+.cards div {
+	height: 365px;
+	width: 535px;
+	padding: 20px 35px;
+	border-radius: 20px;
+	margin: 10px;
+	position: relative;
+	overflow: hidden;
+	background:rgba(134, 126, 126, 0.2);
+	text-align: center;
+}
+
+.cards i{
+	font-size: 50px;
+	display: block;
+	text-align: center;
+	margin: 25px 0px;
+}
+.cards p {
+	margin: 20px;
+}
+
+.cards a {
+	color: black;
+	text-decoration: none;
+	font-size: 20px;
+	font-family: 'Roboto', sans-serif;
+	color: white;
+	padding: 6px 13px;
+	background:rgba(0,0,0,0.2);
+	border-radius: 13px;
+	
+}
+
+.cards a:hover {
+background:rgba(0,0,0,0.4);
+}
