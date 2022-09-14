@@ -4,7 +4,7 @@
 	margin: 0;
 	box-sizing: border-box;
 	font-family: sans-serif;
-	
+
 }
 html{
 	scroll-behavior: smooth;
@@ -17,13 +17,32 @@ body{
 	background-size: cover;
 	height: 100vh;
 }
-
+.search{
+	width: 800px;
+	margin: 1rem;
+	border: none;
+	background:#f8f7fa;
+	font-family: inherit;
+	font-size: 1rem;
+	padding: 0.5rem 1rem;
+	
+}
+.search::placeholder {
+    color: #b4adb4;
+	font-size: 1.1rem;
+	
+}
+.search:focus {
+	background:rgba(0,0,0,0.2);
+    outline: none;
+}
 .navbar{
-	display: inline-flex;
+	display: flex;
     justify-content: space-between;
 	height: 80px;
 	width: 100%;
-	background: rgba(0,0,0,0.1);
+	background: white;
+
 }
 .navbar div{
 	padding: 20px 120px;
@@ -38,6 +57,7 @@ body{
 	width: 900px;
 	outline: 2px black solid;
 	border-radius: 10px;
+	margin-bottom: 15px;
 }
 .navbar ul{
 	float: right;
@@ -69,7 +89,7 @@ body{
 	position: absolute;
 	left: 50%;
 	top: 55%;
-	transform: translate(-50%, -50%);
+	transform: translate(-50%, -55%);
 	font-family: sans-serif;
 	user-select: none;
 	
@@ -95,13 +115,23 @@ body{
 .center .center-right button{
 	margin-left: 200px;
 	margin-top: 0px;
-
+}
+.center-right div{
+	align-items: center;
+	justify-items: center;
+	position: relative;
+	overflow: hidden;
+	margin-top: 0px;
 }
 .corn-guy{
     width: auto;
 	padding-left: 3rem;
 }
+.corn-guy:hover {
+	transform: scale(1.03);
+	transition: .3s ease;
 
+}
 .center h1{
 	color: black;
 	font-size: 70px;
@@ -146,10 +176,11 @@ body{
 }
 
 .trending-page {
-
-	margin: 1rem;
+	
 	height: 100%;
-	display: inline-flex;
+	display: flex;
+	position: relative;
+	overflow: hidden;
 	align-items: center;
 	justify-items: center;
 	width: 100%;
@@ -159,6 +190,7 @@ body{
 	padding: 2rem;
 	align-items: center;
 	justify-self: center;
+
 }
  button{
 	height: 50px;
@@ -169,10 +201,9 @@ body{
 	background: red;
 	outline: none;
 	cursor: pointer;
-	border: 1px solid black;
-	border-radius: 25px;
+	border: none;
+	border-radius: 15px;
 	transition: .4s;
-  
 }
 
  button:hover{
@@ -199,7 +230,7 @@ body{
 	border-radius: 10px;
 }
 
-/*about page*/
+/*----------------------------------about page----------------------------------*/
 
 .cards{
 	display: flex;
