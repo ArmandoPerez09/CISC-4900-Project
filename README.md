@@ -77,7 +77,7 @@ Create placeholder for the activities, while another teammate researches the bes
 
 
 
-Color Palette
+### Color Palette
 #dd4826
 #fbc5c4
 #f2e9df
