@@ -3,7 +3,7 @@
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
-	font-family: sans-serif;
+	font-family: 'Open Sans', sans-serif;
 
 }
 html{
@@ -33,7 +33,7 @@ body{
 	
 }
 .search:focus {
-	background:rgba(0,0,0,0.2);
+	background:rgba(0,0,0,0.1);
     outline: none;
 }
 .navbar{
@@ -53,9 +53,10 @@ body{
 	border: double;
 }
 .nyc-map{
+	
 	height: 500px;
 	width: 900px;
-	outline: 2px black solid;
+	outline: 1px black solid;
 	border-radius: 10px;
 	margin-bottom: 15px;
 }
@@ -106,12 +107,14 @@ body{
 .center-left{
     margin-top: 150px;
     display: grid;
+	margin-left: 3rem;
 }
 .center .center-left ul{
     grid-template-columns: repeat(4,1.2fr);
     grid-column-gap: 1px;
     grid-row-gap: 1px;
 }
+
 .center .center-right button{
 	margin-left: 200px;
 	margin-top: 0px;
@@ -150,28 +153,31 @@ body{
 .center button{
 	margin: 35px 380px;
 }
-
+.center .center-left ul img {
+	height: 45px;
+}
 .center .center-left li{
     display: inline-flex;
+	align-items: center;
     margin: 8px;
-	font-family: 'Roboto', sans-serif;
-    background:rgba(0,0,0,0.2);
+    background:white;
 	border-radius: 15px;
     justify-content: center;
 	padding: 0.7rem;
+	outline: 1px #f2e9df solid;
 }
-.center .center-left ul li span{
-   color: white;
-   padding-right: 2px;
+.center .center-left li:hover{
+	
+		transform: scale(1.02);
+		transition: .1s ease;
+	
+	
 }
-.center .center-left ul li:hover{
 
-    background:rgba(0,0,0,0.4);
 
-}
 .center .center-left ul li a{
     text-decoration: none;
-    color: white;
+    color: black;
     font-size: 20px;
 }
 
@@ -182,7 +188,7 @@ body{
 	position: relative;
 	overflow: hidden;
 	align-items: center;
-	justify-items: center;
+	justify-self: center;
 	width: 100%;
 	
 }
@@ -190,6 +196,8 @@ body{
 	padding: 2rem;
 	align-items: center;
 	justify-self: center;
+	
+	
 
 }
  button{
@@ -211,11 +219,12 @@ body{
 }
 
 .trending-page img {
-	padding: 2px;
-	border-radius: 15px;
+	padding: 12px;
+	border-radius: 25px;
 	align-items: center;
 	justify-self: center;
 }
+
 .trending-page img:hover {
 	transform: scale(1.03);
 	transition: .3s ease;
@@ -225,7 +234,6 @@ body{
 .trending-page h1 {
 	background:rgba(0,0,0,0.2);
 	color: white;
-	text-align:center;
 	padding: 1rem;
 	border-radius: 10px;
 }
@@ -239,21 +247,22 @@ body{
 	justify-content: center;
 	min-height: 400px;
     grid-template-columns: 33% 33% 33%;
-
 	width: 100%;
 }
 .cards div {
-	height: 365px;
+	height: 615px;
 	width: 535px;
 	padding: 20px 35px;
 	border-radius: 20px;
 	margin: 10px;
 	position: relative;
 	overflow: hidden;
-	background:rgba(134, 126, 126, 0.2);
+	background: #fff;
 	text-align: center;
 }
-
+.cards h3{
+	font-size: 1.4rem;
+}
 .cards i{
 	font-size: 50px;
 	display: block;
@@ -279,3 +288,18 @@ body{
 .cards a:hover {
 background:rgba(0,0,0,0.4);
 }
+
+.cards img {
+	height: 35%;
+	text-align: center;
+	margin: 10px 0px;
+}
+
+.moreText{
+    display: none;
+}
+
+.text.show-more .moreText{
+    display: inline;
+}
+
