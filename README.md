@@ -78,8 +78,9 @@ We currently have many designs in mind and we have to choose which one will fit 
 ### Tasks
 Build and design the front website
 Create placeholder for the activities, while another teammate researches the best way to implement the API
-
-
+Search for packages on https://www.npmjs.com/ and install dependencies
+Scraping website for events, recently started working on getting events into our website. By using javascript we have libraries that help us do that. Axios visits a url and get the response from it, which is the response data that we can save and use for our HTML. cheerio allows us to pass through all the HTML that we gathered with axios, we can select a class name that we like to pick out and their components such as the picture, title, link, price.
+The next step is to display these events into our website
 
 
 ### Color Palette
