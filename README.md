@@ -9,10 +9,15 @@ CISC 4900 Fall 2022
 
 ## Contact:
 (Supervisor) Anshul Nimje: animje@etsy.com
+
 Armando Perez: armando123perez@gmail.com
+
 Bhel Charles: bhelhalensc@gmail.com 
+
 Devin Lin: devin1299@outlook.com
+
 Fazle Rabbi: Fazle.Rabbi67@bcmail.cuny.edu 
+
 ## Description of the project:
 Many people struggle to find places to go out, places to eat, and find the "top things to do in NYC" to be oversaturated. The project is a website that allows visitors and locals to find anything in New York City, from enjoyable activities to top-notch restaurants and rooftop bars. Hidden gems that nobody has talked about. The website has a sign-in system, allowing each user to have their own account. On our website, we'll have personalized preferences for various users, allowing each one to see recommendations based on their prior preferences. This website aids those who are having trouble choosing a destination or finding things to do.
 ## Objective:
