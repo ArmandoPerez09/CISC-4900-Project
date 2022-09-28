@@ -4,7 +4,7 @@
 	margin: 0;
 	box-sizing: border-box;
 	font-family: 'Open Sans', sans-serif;
-
+	/*outline: 1px black solid;*/
 }
 html{
 	scroll-behavior: smooth;
@@ -64,6 +64,15 @@ body{
 	float: right;
 	margin-right: 30px;
 }
+.navbar .signin{
+	background:#534859;
+	border-radius: 10px;
+	padding: none;
+}
+.navbar .signin:hover{
+	background:#746c79;
+	border-radius: 10px;
+}
 .navbar li{
 	margin: 0 8px;
 	display: inline;
@@ -77,14 +86,13 @@ body{
 	padding: 6px 13px;
 	text-decoration: none;
 	background:rgba(0,0,0,0.2);
-	border-radius: 15px;
+	border-radius: 10px;
 
 }
 .navbar a.active,
 .navbar a:hover{
 	background: red;
-	border-radius: 15px;
-    
+	border-radius: 10px;
 }
 .front-page .center{
 	position: absolute;
@@ -303,3 +311,47 @@ background:rgba(0,0,0,0.4);
     display: inline;
 }
 
+/*----------------------------------login page----------------------------------*/
+
+.loginBox {
+	display: flex;
+	margin-top: 8%;
+	align-items: center;
+	justify-content: center;
+	min-height: 400px;
+	width: 100%;
+	
+}
+.loginBox input {
+	display: block;
+	outline: none;
+	margin: 2rem;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	background: #fff;
+	width: 50%;
+	margin-left: auto;
+    margin-right: auto;
+	height:50px;
+    font-size:12pt;
+}
+.loginBox div {
+	height: 615px;
+	width: 535px;
+	padding: 20px 35px;
+	border-radius: 20px;
+	margin: 10px;
+	position: relative;
+	overflow: hidden;
+	background: #fff;
+	text-align: center;
+}
+.loginBox h3{
+	font-size: 1.4rem;
+}
+
+.loginBox img {
+	height: 30%;
+	text-align: center;
+	margin: 10px 0px;
+}
