@@ -9,8 +9,7 @@
 <body>
 	<div class="front-page">
 			<nav class="navbar">
-                
-                <!---logo and background from canva--->
+            
                 <div>
 				    <img class="logo" src="/img/logo.png">
                 </div>  
@@ -23,7 +22,25 @@
 					<li><a class="signin" href="login.html">Sign In</a></li>
 				</ul>
 			</nav>
-			
+			<div class="feedbackBox">
+				
+				<div>
+					<img src="/img/feedback-img.png">
+					<h3>Send up some feedback!</h3>
+					<textarea class="feedback-text-box" placeholder="Describe your issues or ideas..."  rows="10" cols="50"></textarea>	
+					
+					<br>
+						<input type="checkbox" id="check-bug" name="check-bug" value="Bug">
+						<label for="check-bug"> Bug</label>
+						<input type="checkbox" id="check-comment" name="check-comment" value="Comment">
+						<label for="check-comment"> Comment</label>
+						<input type="checkbox" id="check-other" name="check-other" value="Other">
+						<label for="check-other"> Other</label>
+					<br>
+					<button class="send-feedback">Send Feedback</button>
+				</div>
+				
+			</div>
             
 	</div>
    
