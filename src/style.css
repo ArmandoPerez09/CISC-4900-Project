@@ -315,11 +315,12 @@ background:rgba(0,0,0,0.4);
 
 .loginBox {
 	display: flex;
-	margin-top: 8%;
+	margin-top: 6%;
 	align-items: center;
 	justify-content: center;
 	min-height: 400px;
 	width: 100%;
+
 	
 }
 .loginBox input {
@@ -334,9 +335,10 @@ background:rgba(0,0,0,0.4);
     margin-right: auto;
 	height:50px;
     font-size:12pt;
+	
 }
 .loginBox div {
-	height: 615px;
+	height: 655px;
 	width: 535px;
 	padding: 20px 35px;
 	border-radius: 20px;
@@ -345,6 +347,7 @@ background:rgba(0,0,0,0.4);
 	overflow: hidden;
 	background: #fff;
 	text-align: center;
+	
 }
 .loginBox h3{
 	font-size: 1.4rem;
@@ -355,12 +358,19 @@ background:rgba(0,0,0,0.4);
 	text-align: center;
 	margin: 10px 0px;
 }
+.loginBox .login-button{
+	margin-top: 1rem;
+	width: 50%;
+}
+.loginBox .form__text a {
+	color: #534859;
 
+}
 /*----------------------------------feedback page----------------------------------*/
 
 .feedbackBox {
 	display: flex;
-	margin-top: 8%;
+	margin-top: 6%;
 	align-items: center;
 	justify-content: center;
 	min-height: 400px;
@@ -369,7 +379,7 @@ background:rgba(0,0,0,0.4);
 }
 
 .feedbackBox div {
-	height: 615px;
+	height: 655px;
 	width: 30%;
 	padding: 20px 35px;
 	border-radius: 20px;
