@@ -6,17 +6,19 @@
 	<link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <script src="script.js" defer></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeKR3s1E42hqIl6V8yR0UiMHJZxXbeAkk&callback=initMap"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAeKR3s1E42hqIl6V8yR0UiMHJZxXbeAkk&callback=initMap" async defer></script>
 </head>
 <body>
  
 	<div class="front-page">
-			<nav class="navbar">
+			<nav style="justify-content:space-between" class="navbar">
                 
                 <!---logo and background from canva--->
                 <div class="logo-section">
 				    <img class="logo" src="/img/logo.png">
                 </div>      
-                <input class="search" type="text" placeholder="Search events">      
+                <input id="searchInput" class="search" type="text" placeholder="Search events">      
 				<ul>
 					<li><a class="active" href="#">Home</a></li>
 					<li><a href="./components/about.html">About</a></li>
@@ -30,18 +32,26 @@
 					        <a href="./components/about.html">About</a>
 					        <a href="./components/contact.html">Contact</a>
 					        <a href="./components/feedback.html">Feedback</a>
-                            <a href="./components/login.html">Sign In</a>
+                            <a class="signin" href="./components/login.html">Sign In</a>
                         </div>
                     </div>
-                    
-                    
-                    
+
 				</ul>
                 
 			</nav>
 			<div class="center">
+                
                 <div class="center-left">
-                    <img class="nyc-map" src="/img/map.jpg">
+                    
+                  <div id="map"></div>
+                
+                  <!-- <iframe
+                    frameborder="0" style="border:0"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    src="https://www.google.com/maps/embed/v1/search?key=AIzaSyAeKR3s1E42hqIl6V8yR0UiMHJZxXbeAkk&q=restaurants+in+Manhattan"
+                    allowfullscreen>
+                    </iframe> -->
+                  
                 <ul>
 					<li>
                         <img src="/img/music.png">
