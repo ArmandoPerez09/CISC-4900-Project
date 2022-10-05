@@ -10,13 +10,17 @@
 	margin: 0;
 	box-sizing: border-box;
 	font-family: 'Open Sans', sans-serif;
-	/*outline: 1px black solid;*/
+	/* outline: 1px black solid; */
+	
 }
 html{
 	scroll-behavior: smooth;
 }
+
 body{
 	background: url(/img/bg1.jpg) fixed;
+	background-size: cover;      
+
 }
 .front-page{
 	
@@ -24,15 +28,17 @@ body{
 	height: 100vh;
 }
 .search{
-	width: 800px;
+	
+	width: 500px;
 	margin: 1rem;
 	border: none;
 	background:#f8f7fa;
 	font-family: inherit;
 	font-size: 1rem;
 	padding: 0.5rem 1rem;
-	
+
 }
+
 .search::placeholder {
     color: #b4adb4;
 	font-size: 1.1rem;
@@ -48,18 +54,21 @@ body{
 	height: 80px;
 	width: 100%;
 	background: white;
-
+}
+.navbar .logo-section{
+	padding: 20px 150px;
 }
 .navbar div{
-	padding: 20px 120px;
+	padding: 20px 60px;
+	
 }
 .navbar .logo{
-	width: 170px;
+	width: 160px;
 	height: auto;
 	border: double;
 }
 .nyc-map{
-	
+	position: relative;
 	height: 500px;
 	width: 900px;
 	outline: 1px black solid;
@@ -69,6 +78,7 @@ body{
 .navbar ul{
 	float: right;
 	margin-right: 30px;
+	
 }
 .navbar .signin{
 	background:#534859;
@@ -100,10 +110,13 @@ body{
 	background: red;
 	border-radius: 10px;
 }
+.navbar button {
+	display: none;
+}
 .front-page .center{
 	position: absolute;
 	left: 50%;
-	top: 55%;
+	top: 60%;
 	transform: translate(-50%, -55%);
 	font-family: sans-serif;
 	user-select: none;
@@ -112,14 +125,14 @@ body{
 
 .center{
     display: grid;
-	grid-template-columns: 1fr  500px;
+	grid-template-columns: 1fr  200px;
 	align-items: center;
 	justify-self: center;
 	margin: 0;
 	width: 70%;
+	position: fixed;
 }
 .center-left{
-    margin-top: 150px;
     display: grid;
 	margin-left: 3rem;
 }
@@ -130,8 +143,9 @@ body{
 }
 
 .center .center-right button{
-	margin-left: 200px;
-	margin-top: 0px;
+	margin-left: 0px;
+	margin-top: 10px;
+
 }
 .center-right div{
 	align-items: center;
@@ -142,7 +156,7 @@ body{
 }
 .corn-guy{
     width: auto;
-	padding-left: 3rem;
+
 }
 .corn-guy:hover {
 	transform: scale(1.03);
@@ -214,7 +228,7 @@ body{
 	
 
 }
- button{
+#button {
 	height: 50px;
 	width: 150px;
 	font-size: 18px;
@@ -228,7 +242,7 @@ body{
 	transition: .4s;
 }
 
- button:hover{
+ .center button:hover{
 	background: #cc0000;
 }
 
@@ -416,4 +430,54 @@ background:rgba(0,0,0,0.4);
 .feedbackBox .send-feedback {
 	margin-top: 1rem;
 	width: 80%;
+}
+.dropdown-menu{
+	display: none;
+}
+@media screen and (max-width: 1600px) {
+	.navbar li {
+		display: none;
+	}
+	.navbar button {
+		display: flex;
+		font-size: 40px;
+		border: none;
+		background-color: transparent;
+		cursor: pointer;
+	}
+	
+	.dropdown{
+		position: relative;
+		
+	}
+	.dropdown-menu{
+		display: grid;
+		position: absolute;
+		left: 0;
+		top: calc(100% + .15rem);
+		background-color: white;
+		box-shadow: 0 2px 5px 0 rgb(0, 0, 0, .3);
+		opacity: 0;
+		pointer-events: none;
+		transform: translateY(-10px);
+		transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+		
+		justify-content: center;
+	}
+	.dropdown.active > #link + .dropdown-menu {
+		opacity: 1;
+		transform: translateY(0);
+		pointer-events: auto;
+		position: absolute;
+		
+	}
+	.dropdown-menu a {
+		margin: 10px;
+		
+	}
+	.center{
+		margin-top: 400px;
+		display: inline;
+	}
+	
 }

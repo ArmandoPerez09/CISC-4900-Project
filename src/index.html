@@ -8,11 +8,12 @@
     <script src="script.js" defer></script>
 </head>
 <body>
+ 
 	<div class="front-page">
 			<nav class="navbar">
                 
                 <!---logo and background from canva--->
-                <div>
+                <div class="logo-section">
 				    <img class="logo" src="/img/logo.png">
                 </div>      
                 <input class="search" type="text" placeholder="Search events">      
@@ -22,6 +23,18 @@
 					<li><a href="./components/contact.html">Contact</a></li>
 					<li><a href="./components/feedback.html">Feedback</a></li>
                     <li><a class="signin" href="./components/login.html">Sign In</a></li>
+                    <div class="dropdown" data-dropdown>
+                        <button id="link" class="material-symbols-outlined" data-dropdown-button>menu</button>
+                        <div class="dropdown-menu">
+                            <a href="index.html">Home</a>
+					        <a href="./components/about.html">About</a>
+					        <a href="./components/contact.html">Contact</a>
+					        <a href="./components/feedback.html">Feedback</a>
+                            <a href="./components/login.html">Sign In</a>
+                        </div>
+                    </div>
+                    
+                    
                     
 				</ul>
                 
@@ -58,16 +71,17 @@
                         <img src="/img/attraction.png">
                         <a href="#">Attraction & Tours</a>
                     </li>
-                   
+                    
                     
 				</ul>
+                
                  
             </div>
             <div class="center-right">
                 <a href="./components/about.html"><img class="corn-guy" src="/img/corn.png" ></a>
                 <div>
                     <a href=#trending>
-                        <button>Explore</button>
+                        <button id="button">Explore</button>
                     </a> 
             </div>
             </div> 
@@ -91,5 +105,6 @@
                 <img src="/img/event2.png">
             </div>
     </div>
+
 </body>
 </html>

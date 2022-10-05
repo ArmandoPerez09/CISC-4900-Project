@@ -21,25 +21,40 @@
 					<li><a href="contact.html">Contact</a></li>
 					<li><a href="feedback.html">Feedback</a></li>
                     <li><a class="signin" href="login.html">Sign In</a></li>
+					<div class="dropdown" data-dropdown>
+                        <button id="link" class="material-symbols-outlined" data-dropdown-button>menu</button>
+                        <div class="dropdown-menu">
+                            <a href="../index.html">Home</a>
+					        <a href="about.html">About</a>
+					        <a href="contact.html">Contact</a>
+					        <a href="feedback.html">Feedback</a>
+                            <a href="login.html">Sign In</a>
+                        </div>
+                    </div>
 				</ul>
 			</nav>
 			<div class="loginBox">
-				
+			
+
 				<div>
 					<img src="/img/login-dog.png">
 					<h3>Log In</h3>
-					  <input type="email" placeholder="Email" style="padding-left: 10px;">
+					  <input type="email" placeholder="Email" autofocus style="padding-left: 10px;">
 					  <input type="password" placeholder="Password" style="padding-left: 10px;">
-					  <button class="login-button">Login to Account</button> <br><br>
+					  <button id="button" class="login-button">Login to Account</button> <br><br>
 						<p class="form__text">
 							<a href="#" class="form__link">Forgot your password?</a>
 						</p>
 						<br>
 						<p class="form__text">
-							<a href="#" class="form__link">Don't have an account? Create account</a>
+							<a href="#" class="form__link" id="linkCreateAccount">Don't have an account? Create account</a>
 						</p>
+						
 				</div>
+			
 			</div> 
+			
 	</div>
+	<script src="../script.js"></script>
 </body>
 </html>
