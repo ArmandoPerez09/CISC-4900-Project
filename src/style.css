@@ -479,5 +479,13 @@ background:rgba(0,0,0,0.4);
 		margin-top: 400px;
 		display: inline;
 	}
+	.cards {
+		display: block;
+		height: 200px;
+  		position: relative;
+	}
+	.cards div {
+		margin-left: 30%;
+	}
 	
 }
