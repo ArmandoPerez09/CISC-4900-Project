@@ -14,7 +14,7 @@
 	<div class="front-page">
 			<nav style="justify-content:space-between" class="navbar">
                 
-                <!---logo and background from canva--->
+                <!---logo and navbar--->
                 <div class="logo-section">
 				    <img class="logo" src="/img/logo.png">
                 </div>      
@@ -22,7 +22,7 @@
 				<ul>
 					<li><a class="active" href="#">Home</a></li>
 					<li><a href="./components/about.html">About</a></li>
-					<li><a href="./components/contact.html">Contact</a></li>
+					<li><a href="./components/help.html">Help</a></li>
 					<li><a href="./components/feedback.html">Feedback</a></li>
                     <li><a class="signin" href="./components/login.html">Sign In</a></li>
                     <div class="dropdown" data-dropdown>
@@ -30,56 +30,59 @@
                         <div class="dropdown-menu">
                             <a href="index.html">Home</a>
 					        <a href="./components/about.html">About</a>
-					        <a href="./components/contact.html">Contact</a>
+					        <a href="./components/help.html">Help</a>
 					        <a href="./components/feedback.html">Feedback</a>
                             <a class="signin" href="./components/login.html">Sign In</a>
                         </div>
                     </div>
 
 				</ul>
-                
+              
 			</nav>
+            <!---frontpage--->
 			<div class="center">
                 
                 <div class="center-left">
                     
                   <div id="map"></div>
-                
+
+                 <!--shows the nearby restaurants in manhattan-->
+
                   <!-- <iframe
                     frameborder="0" style="border:0"
                     referrerpolicy="no-referrer-when-downgrade"
                     src="https://www.google.com/maps/embed/v1/search?key=AIzaSyAeKR3s1E42hqIl6V8yR0UiMHJZxXbeAkk&q=restaurants+in+Manhattan"
                     allowfullscreen>
-                    </iframe> -->
-                  
+                    </iframe>
+                 -->
                 <ul>
 					<li>
                         <img src="/img/music.png">
-                        <a href="#">Music</a>
+                        <a onclick="getMusic()" href="#">Music</a>
                     </li>
 					<li>
                         <img src="/img/artculture.png">
-                        <a href="#">Arts & Culture</a>
+                        <a onclick="getArt()" href="#">Arts & Culture</a>
                     </li>
 					<li>
                         <img src="/img/travel.png">
-                        <a href="#">Travel & Outdoor</a>
+                        <a  onclick="getOutdoor()" href="#">Travel & Outdoor</a>
                     </li>
                     <li>
                         <img src="/img/food.png">
-                        <a href="#">Food & Drinks</a>
+                        <a  onclick="getRestaurant()" href="#">Food & Drinks</a>
                     </li>
 					<li>
                         <img src="/img/fitness.png">
-                        <a href="#">Health & Fitness</a>
+                        <a  onclick="getExercise()" href="#">Health & Fitness</a>
                     </li>
 					<li>
                         <img src="/img/game.png">
-                        <a href="#">Entertainment</a>
+                        <a  onclick="getEntertainment()" href="#">Entertainment</a>
                     </li>
                     <li>
                         <img src="/img/attraction.png">
-                        <a href="#">Attraction & Tours</a>
+                        <a  onclick="getFun()" href="#">Attraction & Tours</a>
                     </li>
                     
                     
@@ -98,6 +101,7 @@
             </div>
             
 	</div>
+    
     <div id="trending" class="trending-page">
             <div> 
                 <h1>TRENDING IN NYC NOW!!</h1>
