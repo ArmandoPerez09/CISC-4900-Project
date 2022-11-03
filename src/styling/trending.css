@@ -1,0 +1,40 @@
+.cards{
+	display: flex;
+	margin-top: 0%;
+	align-items: center;
+	justify-content: center;
+	min-height: 400px;
+    grid-template-columns: 33% 33% 33%;
+	width: 100%;
+}
+.cards div {
+	height: 300px;
+	width: 200px;
+	padding: 20px 20px;
+	border-radius: 20px;
+	margin: 10px;
+	position: relative;
+	overflow: hidden;
+	background: rgb(235, 104, 29);
+	text-align: center;
+}
+.cards img {
+	height: 80%;
+    width: 100%;
+	text-align: center;
+	border-radius: 6px;
+	margin: 0px 0px;
+}
+
+.button{
+	border: none;
+	color: #FFF;
+	padding: 4px 6px;
+	background-color: #b91712;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+  }
+  .button:hover{
+	background: #680f04;
+  }

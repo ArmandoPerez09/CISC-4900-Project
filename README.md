@@ -87,3 +87,10 @@ The next step is to display these events into our website
 #dd4826
 #fbc5c4
 #f2e9df
+
+###Change Log
+11/2/22
+-	All pages now have their respective CSS and JS file for ease of access. Original files remain for testing and debugging
+-	Trending section on index.html is now a page of its own. Work in progress
+
+	

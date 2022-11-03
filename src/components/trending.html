@@ -1,3 +1,16 @@
+<!--
+	TODO LIST
+	*	SHOW ALL EVENTS BY DEFAULT, WHEN LOGGED IN, SHOW ONLY EVENTS PREFERRED BY USER
+	*	ADD SLIDING CARDS FOR TRENDING EVENTS (USE PLACEHOLDERS)
+	*	ADD MULTIPLE SLIDING CARDS BASED ON DIFFERENT CRITERIAS (TRENDING, NEAR, PRICE, UPCOMING)
+	*	ADD A SHOW ON MAP, MORE INFO, AND SAVE EVENT BUTTON ON CARDS (x)
+	* 	ADD FUNCTIONALITY TO BUTTONS
+			-	SHOW ON MAP BUTTON REDIRECTS USER TO INDEX.HTML WITH LOCATION OF EVENT CENTERED ON MAP
+			-	MORE INFO BUTTON REDIRECTS USER TO URL OF EVENT
+			-	SAVE EVENT BUTTON ADDS DESIRED EVENTS TO A LIST OF SAVED EVENTS
+	*	ADD TAG(S) ON CARD BASED ON THE TYPE OF EVENT IT IS, MUSIC ART FREE ETC.
+	*		-	Make container for image, category, and buttons
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,21 +51,42 @@
 				</ul>
 			</nav>	
 			<div id="trending" class="trending-page">
-				<div> 
+				<!--div> 
 					<h1>TRENDING IN NYC NOW!!</h1>
+				</div-->
+				<div class="cards">
+					<div>
+						<img src="/img/event1.png">
+						<button class="button">Show</button> &nbsp; 
+						<button class="button">Info</button> &nbsp; 
+						<button class="button">Save</button>
+					</div>
+					<div>
+						<img src="/img/event2.png">
+						<button class="button">Show</button> &nbsp; 
+						<button class="button">Info</button> &nbsp; 
+						<button class="button">Save</button>
+					</div>
+					<div>
+						<img src="/img/event3.png">
+						<button class="button">Show</button> &nbsp; 
+						<button class="button">Info</button> &nbsp; 
+						<button class="button">Save</button>
+					</div>
+					<div>
+						<img src="/img/event2.png">
+						<button class="button">Show</button> &nbsp; 
+						<button class="button">Info</button> &nbsp; 
+						<button class="button">Save</button>
+					</div>
+					<div>
+						<img src="/img/event1.png">
+						<button class="button">Show</button> &nbsp; 
+						<button class="button">Info</button> &nbsp; 
+						<button class="button">Save</button>
+					</div>
 				</div>
-				<div>
-					<img src="/img/event1.png">
-					<img src="/img/event2.png">
-					<img src="/img/event3.png">
-					<img src="/img/event1.png">
-					<img src="/img/event2.png">
-					<img src="/img/event3.png">
-					<img src="/img/event2.png">
-					<img src="/img/event3.png">
-					<img src="/img/event1.png">
-					<img src="/img/event2.png">
-				</div>
+				
 		</div>
            
 	</div>
