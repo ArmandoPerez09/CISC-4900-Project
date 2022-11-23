@@ -37,27 +37,44 @@
 				</ul>
 			</nav>
 			<div class="feedbackBox">
-				
 				<div>
 					<img src="/img/feedback-img.png">
 					<h3>Send up some feedback!</h3>
-					<textarea class="feedback-text-box" placeholder="Describe your issues or ideas..."  rows="10" cols="50"></textarea>	
+					<br>
+					<!--form is using an encrypted string so nobody can access it from the backend-->
+					<form action="https://formsubmit.co/0e1ce550ebf32340be1e419755557f6f" method="POST" > 
+						
+					<section class="formRow">
+						<section class="nameCol">
+							<p>Full name</p>
+							<input name="Full Name" type="text" required>	
+						</section>
+						
+						<section class="emailCol">
+							<p>Email Address</p>
+							<input name="Email" type="email"  required>
+						</section>
+					</section>
+					<section class="SubjectCol">
+						<p>Subject</p>
+						<input name="Subject" type="text"  required>	
+					</section>
+					<p>Message</p>
+						<textarea name="Message" class="feedback-text-box" rows="10" cols="50"></textarea>	
+						
+						<select name="Inquiry Type">
+							<option>Comment</option>
+							<option>Bug</option>
+							<option>Other</option>
+						</select>
+							<br>
+							<button type="submit" id="button" class="send-feedback">Send Feedback</button>
+					</form>
 					
-					<br>
-						<input type="checkbox" id="check-bug" name="check-bug" value="Bug">
-						<label for="check-bug"> Bug</label>
-						<input type="checkbox" id="check-comment" name="check-comment" value="Comment">
-						<label for="check-comment"> Comment</label>
-						<input type="checkbox" id="check-other" name="check-other" value="Other">
-						<label for="check-other"> Other</label>
-					<br>
-					<br>
-					<button id="button" class="send-feedback">Send Feedback</button>
 				</div>
-				
-			</div>
-            
+			</div> 
 	</div>
+	
 	<script src="../script.js"></script>
 </body>
 </html>
