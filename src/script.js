@@ -372,9 +372,7 @@ function getRestaurant() {
         //     });
            
         // }
-       
-       
-   
+
     infowindow = new google.maps.InfoWindow();
 }
 function getExercise() { 
