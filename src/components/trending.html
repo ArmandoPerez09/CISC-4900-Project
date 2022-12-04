@@ -58,55 +58,52 @@
 				</div>
 
 				<div class="card">
-					<div class="imgBox">
-						<a href="#">
-						<img src="/img/event1.png">
-						</a>
-						<div class="infobox">
-							<h4>Event Name and Date</h4>
-							<Address>Address Here</Address>
-							<p><br>Event Information Here</p>
-							<div class="btnbox">
-								<button class="btn"><i class="fa-regular fa-star fa-lg"></i></button>
-								<button class="btn"><i class="fa-regular fa-rectangle-list fa-lg"></i></i></button>
-								<button class="btn"><i class="fa-solid fa-map fa-lg"></i></button>
-							</div>
+					<div class="imgBox"><img class="img" src="/img/event1.png"></div>
+					<div class="infobox">
+						<div class="info">
+							<span><h4>Event Name and Date</h4>
+							<h4>Address Here</h4>
+							<p>Event Information Here</p></span>
+						</div>
+						
+						<div class="btnbox">
+							<button class="btn"><i class="fa-regular fa-star fa-lg"></i></button>
+							<button class="btn"><i class="fa-regular fa-rectangle-list fa-lg"></i></i></button>
+							<button class="btn"><i class="fa-solid fa-map fa-lg"></i></button>
 						</div>
 					</div>
 				</div>
 
 				<div class="card">
-					<div class="imgBox">
-						<a href="#">
-						<img src="/img/event2.png">
-						</a>
-						<div class="infobox">
-							<h4>Event Name and Date</h4>
-							<Address>Address Here</Address>
-							<p><br>Event Information Here</p>
-							<div class="btnbox">
-								<button class="btn"><i class="fa-regular fa-star fa-lg"></i></button>
-								<button class="btn"><i class="fa-regular fa-rectangle-list fa-lg"></i></i></button>
-								<button class="btn"><i class="fa-solid fa-map fa-lg"></i></button>
-							</div>
+					<div class="imgBox"><img class="img" src="/img/event2.png"></div>
+					<div class="infobox">
+						<div class="info">
+							<span><h4>Event Name and Date</h4>
+							<h4>Address Here</h4>
+							<p>Event Information Here</p></span>
+						</div>
+						
+						<div class="btnbox">
+							<button class="btn"><i class="fa-regular fa-star fa-lg"></i></button>
+							<button class="btn"><i class="fa-regular fa-rectangle-list fa-lg"></i></i></button>
+							<button class="btn"><i class="fa-solid fa-map fa-lg"></i></button>
 						</div>
 					</div>
 				</div>
 
 				<div class="card">
-					<div class="imgBox">
-						<a href="#">
-						<img src="/img/event3.png">
-						</a>
-						<div class="infobox">
-							<h4>Event Name and Date</h4>
-							<Address>Address Here</Address>
-							<p><br>Event Information Here</p>
-							<div class="btnbox">
-								<button class="btn"><i class="fa-regular fa-star fa-lg"></i></button>
-								<button class="btn"><i class="fa-regular fa-rectangle-list fa-lg"></i></i></button>
-								<button class="btn"><i class="fa-solid fa-map fa-lg"></i></button>
-							</div>
+					<div class="imgBox"><img class="img" src="/img/event3.png"></div>
+					<div class="infobox">
+						<div class="info">
+							<span><h4>Event Name and Date</h4>
+							<h4>Address Here</h4>
+							<p>Event Information Here</p></span>
+						</div>
+						
+						<div class="btnbox">
+							<button class="btn"><i class="fa-regular fa-star fa-lg"></i></button>
+							<button class="btn"><i class="fa-regular fa-rectangle-list fa-lg"></i></i></button>
+							<button class="btn"><i class="fa-solid fa-map fa-lg"></i></button>
 						</div>
 					</div>
 				</div>
@@ -121,49 +118,55 @@
 			</div>
 
 			<!--Table Section-->
-			<div class="container2">
-				<div class="centerbtnbox">
+			<div class="container">
+				<div class="centerbox">
 					<button class="btn">For You</button>
 					<button class="btn">All Events</button>
 					<button class="btn">Discover</button>
 				</div>
+				<div class="centerbox"><input id="searchInput" class="search" type="text" placeholder="Search events"></div>
+				
+				<div class="section">
+					<div class="contentbox">						
+						<div class="header"><h4>Categories</h4></div>
+						<div class="optionbox1">
+							<span class="options1"><label for="music">Music<i class="fa-solid fa-music"></i></label>
+							<input type="checkbox" id="music" name="music" value="musicplaceholder"></span>
+							<span class="options1"><label for="artsCult">Arts&Culture<i class="fa-solid fa-masks-theater"> </i></label>
+							<input type="checkbox" id="artsCult" name="artsCult" value="artsplaceholder"></span>
+							<span class="options1"><label for="travel">Travel&Outdoor<i class="fa-solid fa-person-hiking"> </i></label>
+							<input type="checkbox" id="travel" name="travel" value="travelplaceholder"></span>
+							<span class="options1"><label for="food">Food&Drinks<i class="fa-solid fa-utensils"> </i></label>	
+							<input type="checkbox" id="food" name="food" value="foodplaceholder"></span>
+							<span class="options1"><label for="health">Health&Fitness<i class="fa-solid fa-dumbbell"> </i></label>
+							<input type="checkbox" id="health" name="health" value="healthplaceholder"></span>
+							<span class="options1"><label for="entertainment">Entertainment<i class="fa-solid fa-film"></i> </label>	
+							<input type="checkbox" id="entertainment" name="entertainment" value="entertainmentplaceholder"></span>
+							<span class="options1"><label for="attraction">Attraction&Tour<i class="fa-solid fa-earth-americas"> </i></label>
+							<input type="checkbox" id="attraction" name="attraction" value="attractionplaceholder"></span>
+						</div>
 
-				<div class="filters">
-					<div class="optionbox">						
-						<div class="header1"><h4>Categories</h4></div>
+						<div class="header"><h4>Price</h4></div> 
+						<div class="optionbox2">
+							<span class="options2"><label for="free"><h5>Free</h5></label>
+							<input type="checkbox" id="free" name="free" value="free"></span>
+							<span class="options2"><label for="paid"><h5>Paid</h5></label>	
+							<input type="checkbox" id="paid" name="paid" value="paid"></span>
+							<span class="options2"><label for="both"><h5>Both</h5></label>
+							<input type="checkbox" id="both" name="both" value="both"></span>
+						</div>
 						
-						<span class="options"><label for="music">Music<i class="fa-solid fa-music"></i></label>
-						<input type="checkbox" id="music" name="music" value="musicplaceholder"></span>
-						<span class="options"><label for="artsCult">Arts&Culture<i class="fa-solid fa-masks-theater"> </i></label>
-						<input type="checkbox" id="artsCult" name="artsCult" value="artsplaceholder"></span>
-						<span class="options"><label for="travel">Travel&Outdoor<i class="fa-solid fa-person-hiking"> </i></label>
-						<input type="checkbox" id="travel" name="travel" value="travelplaceholder"></span>
-						<span class="options"><label for="food">Food&Drinks<i class="fa-solid fa-utensils"> </i></label>	
-						<input type="checkbox" id="food" name="food" value="foodplaceholder"></span>
-						<span class="options"><label for="health">Health&Fitness<i class="fa-solid fa-dumbbell"> </i></label>
-						<input type="checkbox" id="health" name="health" value="healthplaceholder"></span>
-						<span class="options"><label for="entertainment">Entertainment<i class="fa-solid fa-film"></i> </label>	
-						<input type="checkbox" id="entertainment" name="entertainment" value="entertainmentplaceholder"></span>
-						<span class="options"><label for="attraction">Attraction&Tour<i class="fa-solid fa-earth-americas"> </i></label>
-						<input type="checkbox" id="attraction" name="attraction" value="attractionplaceholder"></span>
-
-						<div class="header1"><h4>Price</h4></div> 
-						<span class="options2"><label for="free"><h5>Free</h5></label>
-						<input type="checkbox" id="free" name="free" value="free"></span>
-						<span class="options2"><label for="paid"><h5>Paid</h5></label>	
-						<input type="checkbox" id="paid" name="paid" value="paid"></span>
-						<span class="options2"><label for="both"><h5>Both</h5></label>
-						<input type="checkbox" id="both" name="both" value="both"></span>
-					
-						<div class="header1"><h4>Date</h4></div>
-
-						<input type="date" id="start" name="trip-start" value="2022-12-03">
+						<div class="header"><h4>Date</h4></div>
+						<div class="optionbox2">
+							<input type="date" id="start" name="trip-start" value="2022-12-03">
+						</div>
+						
 					</div>
 				</div>
 
-				<div class="midsection">
-					<div class="eventlistbox">
-						<div class="header2"><h4>Event List</h4></div>
+				<div class="section">
+					<div class="contentbox">
+						<div class="header"><h4>Event List</h4></div>
 						<div class="eventlist">
 							<div class="event">Event 1</div>
 							<div class="event">Event 2</div>
@@ -187,15 +190,31 @@
 					</div>
 				</div>
 
-				<div class="rightsection">
-					<div class="infobox">
-						<div class="header3"><h4>Information</h4></div>
+				<div class="section">
+					<div class="contentbox">
+						<div class="header"><h4>Information</h4></div>
+						<div class="imgBox">
+							<img class="img" src="/img/logo.png">
+						</div>
+						<div class="infobox">
+							<div class="info">
+								<span><h4>Event Name and Date</h4>
+								<h4>Address Here</h4>
+								<p>Event Information Here</p></span>
+							</div>
+							
+							<div class="btnbox">
+								<button class="btn"><i class="fa-regular fa-star fa-lg"></i></button>
+								<button class="btn"><i class="fa-regular fa-rectangle-list fa-lg"></i></i></button>
+								<button class="btn"><i class="fa-solid fa-map fa-lg"></i></button>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-			
 	</div>
 	<script src="../script.js"></script>
 	<script src="https://kit.fontawesome.com/2ff391b354.js" crossorigin="anonymous"></script>
 </body>
 </html>
+
