@@ -28,16 +28,16 @@
 	width: 300px;
 	position: relative;
 	height: 400px;
-	background-color:  rgb(181, 34, 12, 0.7);
+	background-color:  rgb(181, 34, 12, 0.2);
 	margin: 30px 10px;
 	padding: 15px;
 	display:flex;
 	flex-direction: column;
-	border-radius: 20px;
+	/*border-radius: 20px;*/
 }
 
 .card:hover{
-	transform: scale(1.1);
+	scale: 1.1;
 }
 
 .container .card .imgBox{
@@ -49,7 +49,7 @@
 .container .card .imgBox img{
 	position: absolute;
 	max-width: 100%;
-	border-radius: 20px;
+	/*border-radius: 20px;*/
 	object-fit: cover;
 	margin: 15px;
 }
@@ -60,7 +60,7 @@
 	height: 100%;
 	top: 150px;
 	background-color: azure;
-	border-radius: 0px 0px 20px 20px;
+	/*border-radius: 0px 0px 20px 20px;*/
 	margin: 15px;
 }
  
@@ -85,6 +85,7 @@
 
 .btn:hover{
 	scale: 1.5;
+	cursor: pointer;
 }
 
 .container .pagerbox{
@@ -109,8 +110,10 @@
  
 .pagerbtn:hover{
 	scale: 1.5;
+	cursor: pointer;
 }
 
+/*Event List Section*/
 .container2 {
 	position: relative;
 	width: 100%;
@@ -125,8 +128,8 @@
 
 .container2 .centerbtnbox{
 	position: relative;
-	width: 40%;
-	margin: 0% 30% 2.5% 30%;
+	width: 100%;
+	margin: 0% 0% 2.5% 0%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -137,7 +140,7 @@
 }
 
 .container2 .centerbtnbox .btn{
-	margin: 0px 30px;
+	margin: 0px 10px;
 	font-size: xx-large;
 	font-weight: bold;
 	border: none;
@@ -147,38 +150,86 @@
 
 .btn:hover{
 	scale: 1.1;
+	cursor: pointer;
 }
 
-.container2 .leftsection{
-	margin-right: 5px;
+.container2 .filters{
 	width: 20%;
-	height: 600px;
-	border-radius: 50px 0px 0px 50px;
-	background-color: rgb(181, 34, 12, 0.7);
+	height: 500px;
+	background-color: rgb(181, 34, 12, 0.2);
+}
+.container2 .filters .optionbox{
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap:wrap;
+	width: 90%;
+	height: 92.5%;
+	margin: 5%;
+	background-color: rgb(255, 255, 255,0.7);
 }
 
-.container2 .midsection{
-	width: 20%;
-	height: 600px;
-	background-color: rgb(181, 34, 12, 0.7);
+.container2 .filters .optionbox .options{
+	display: grid;
+	justify-content: center;
+	align-items: center;
+	height: 0%;
+	width: 45%;
+	margin-left: 2.5%;
+	margin-right: 2.5%;
 }
 
-.container2 .midsection .header{
+.container2 .filters .optionbox .options2{
+	display: grid;
+	justify-content: center;
+	align-items: center;
+	height: 5%;
+	width: 30%;
+}
+
+.container2 .filters .optionbox .header1{
 	position: relative;
 	width: 100%;
-	height: 10%;
+	height: 0%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-wrap: wrap;
-	margin-top: 2.5%;
-	margin-bottom: 2.5%;
+}
+
+.container2 .midsection{
+	width: 20%;
+	height: 500px;
+	background-color: rgb(181, 34, 12, 0.2);
+}
+
+.container2 .midsection .eventlistbox{
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap:wrap;
+	width: 90%;
+	height: 92.5%;
+	margin: 5%;
+	background-color: rgb(255, 255, 255,0.7);
+}
+
+.container2 .midsection .header2{
+	position: relative;
+	width: 100%;
+	height: 0%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
 }
 
 .container2 .midsection .eventlist{
 	position: relative;
 	width: 90%;
-	height: 75%;
+	height: 70%;
 	margin-left: 5%;
 	margin-right: 5%;
 	display: flex;
@@ -186,20 +237,25 @@
 	align-items: center;
 	flex-wrap: wrap;
 	overflow-y: scroll;
-	border-radius: 20px;
+	
 }
 
 .container2 .midsection .eventlist .event{
 	position: relative;
-	width: 100%;
-	height: 20%;
+	width: 90%;
+	height: 10%;
 	display: flex;
-	justify-content: center;
+	justify-content: left;
 	align-items: center;
 	flex-wrap: wrap;
-	background-color: rgba(255, 255, 255, 0.7);
-	margin-top: 1.5%;
-	margin-bottom: 1.5%;
+	background-color: rgb(181, 34, 12, 0.5);
+	margin-top: 1%;
+	margin-bottom: 1%;
+}
+
+.event:hover{
+	scale: 1.1;
+	cursor: pointer;
 }
 
 .container2 .midsection .eventpagerbox{
@@ -222,7 +278,7 @@
 	margin: 5px;
 	border: none;
 	background: none;
-	color:aliceblue;
+	color: rgb(181, 34, 12, 0.5);
 }
 
 .container2 .midsection .eventpagerbox .numericpagerbtn{
@@ -233,7 +289,7 @@
 	margin: 5px;
 	border: none;
 	background: none;
-	color:aliceblue ;
+	color:rgb(181, 34, 12, 0.5) ;
 	font-size: larger;
 }
 
@@ -246,11 +302,31 @@
 }
 
 .container2 .rightsection{
-	margin-left: 5px;
 	width: 20%;
-	height: 600px;
-	border-radius: 0px 50px 50px 0px;
-	background-color: rgb(181, 34, 12, 0.7);
+	height: 500px;
+	background-color: rgb(181, 34, 12, 0.2);
+}
+
+.container2 .rightsection .infobox{
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap:wrap;
+	width: 90%;
+	height: 92.5%;
+	margin: 5%;
+	background-color: rgb(255, 255, 255,0.7);
+}
+
+.container2 .rightsection .infobox .header3{
+	position: relative;
+	width: 100%;
+	height: 0%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
 }
 
 /*Table Section
