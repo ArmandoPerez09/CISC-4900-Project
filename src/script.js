@@ -1,5 +1,6 @@
 const readMoreBtn =  document.querySelector('.read-more-btn');
 const text = document.querySelector('.text');
+const infoBox = document.getElementsByClassName('vertical-menu')[0];
 var map;
 var infowindow;
 var service;
@@ -332,6 +333,25 @@ function getRestaurant() {
         var infowindow = new google.maps.InfoWindow({
             content: content,
             
+        });
+
+        results.forEach((place) => {
+            let photos = place.photos;
+            let itemHR = document.createElement('HR');
+            let itemP = document.createElement('P');
+            let img = document.createElement("img");
+
+            img.src = photos[0].getUrl({maxWidth: 99, maxHeight: 99});
+            //document.createElement(`${}`);
+
+
+            let itemPText = document.createTextNode(`${place.name}: $${price}`);
+         
+        
+            itemP.appendChild(itemPText);
+            infoBox.appendChild(img);
+            infoBox.appendChild(itemP);
+            infoBox.appendChild(itemHR);
         });
 
         bindInfoWindow(marker, map, infowindow, content);
