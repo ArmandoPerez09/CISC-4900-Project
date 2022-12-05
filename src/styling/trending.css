@@ -38,7 +38,8 @@
 }
 
 .card:hover{
-	scale: 1.1;
+	transform: scale(1.03);
+	transition: .3s ease;
 }
 
 .container .card .imgBox{
@@ -92,6 +93,7 @@
 .btn:hover{
 	scale: 1.5;
 	cursor: pointer;
+	
 }
 
 .container .pagerbox{
@@ -117,6 +119,7 @@
 .pagerbtn:hover{
 	scale: 1.5;
 	cursor: pointer;
+	
 }
 
 /******************Table Section******************/
@@ -144,6 +147,7 @@
 .btn:hover{
 	scale: 1.1;
 	cursor: pointer;
+	
 }
 
 .container .section{
@@ -241,6 +245,7 @@
 .event:hover{
 	scale: 1.1;
 	cursor: pointer;
+	transition: .3s ease;
 }
 
 .container .section .contentbox .eventpagerbox{
