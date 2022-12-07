@@ -476,12 +476,14 @@ function getRestaurant() {
             
 
             let itemPText = document.createTextNode(`${place.name}: $${price}`);
-            
+            let itemLText = document.createTextNode(`${place.vicinity}`);
             
             itemP.appendChild(itemPText);
+            itemL.appendChild(itemLText);
+
             infoBox.appendChild(img);
-            
             infoBox.appendChild(itemP);
+            infoBox.appendChild(itemL);
             infoBox.appendChild(itemHR);
             img.addEventListener("click", function(){
                 createMarker(place);
