@@ -7,6 +7,7 @@ var service;
 var service2;
 var service3;
 var service4;
+var service5;
 var newYork = {lat: 40.7549, lng: -73.9840};
 
  // WORKING! allows the server to load anything inside the env file
@@ -51,53 +52,96 @@ function getMusic() {
     service3 = new google.maps.places.PlacesService(map);
     service3.nearbySearch(request3, callback);
 
-   function callback(results, status) {
-    if (status == google.maps.places.PlacesServiceStatus.OK) {
-    for (var i = 0; i < results.length; i++) {
+    function callback(results, status) {
+        if (status == google.maps.places.PlacesServiceStatus.OK) {
+        for (var i = 0; i < results.length; i++) {
 
-      var place = results[i];
-      
-      let content = `<h3>${place.name}</h3>
-      <h4>${place.vicinity}</h4>
-      Rating: ${place.rating}`;
-      //createMarker(place);
-      var marker = new google.maps.Marker({
-        title: place.name,
-        map : map,
-        position : place.geometry.location,
-        animation: google.maps.Animation.DROP,
-    });
-    var infowindow = new google.maps.InfoWindow({
-        content: content
-    });
-    bindInfoWindow(marker, map, infowindow, content);
-    marker.setMap(map);
+          
+          var place = results[i];
+         
+          let content = `<h3>${place.name}</h3>
+          <h4>${place.vicinity}</h4>
+          
+          Rating: ${place.rating}<br/>`;
+          
+
+          var marker = new google.maps.Marker({
+            title: place.name,
+            map : map,
+            position : place.geometry.location,
+            animation: google.maps.Animation.DROP,
+            
+        });
+
+        var infowindow = new google.maps.InfoWindow({
+            content: content,
+            
+        });
+        clearBox(infoBox);
+        results.forEach((place) => {
+            
+            let photos = place.photos;
+            let itemHR = document.createElement('HR');
+            let itemP = document.createElement('h3');
+            let img = document.createElement('img');
+            let itemL = document.createElement('p');
+
+            if(photos != "" && photos != null){
+             img.src = photos[0].getUrl({maxWidth: 99, maxHeight: 99});
+            }else{
+                img.src = "/img/no-image.png";
+            }
+
+            let itemPText = document.createTextNode(`${place.name}`);
+            let itemLText = document.createTextNode(`${place.vicinity}`);
+            
+            itemP.appendChild(itemPText);
+            itemL.appendChild(itemLText);
+
+            infoBox.appendChild(img);
+            infoBox.appendChild(itemP);
+            infoBox.appendChild(itemL);
+            infoBox.appendChild(itemHR);
+            img.addEventListener("click", function(){
+                createMarker(place);
+                //infowindow.open(map,marker);
+            });
+        });
+
+        bindInfoWindow(marker, map, infowindow, content);
+        marker.setMap(map);
+        }
+      }
     }
-  }
-}
-function bindInfoWindow(marker, map, infowindow, html){
-    marker.addListener('click', function(){
-        infowindow.setContent(html);
-        infowindow.open(map, this);
-    })
-}
-    // function createMarker(place) {
-    //     var placeLoc = place.geometry.location;
-    //     var marker = new google.maps.Marker({
-    //         map : map,
-    //         position : placeLoc,
-    //         animation: google.maps.Animation.DROP,
-    //     });
+    function clearBox(elementID)
+            {
+                elementID.innerHTML = "";
+            }
+   
 
-    //     google.maps.event.addListener(marker, 'click', function() {
-    //         infowindow.setContent(place.name);
-    //         infowindow.open(map, this);
+    function bindInfoWindow(marker, map, infowindow, html){
+        marker.addListener('click', function(){
+            infowindow.setContent(html);
+            infowindow.open(map, this);
+        });
+    }
+
+    function createMarker(place) {
+        var placeLoc = place.geometry.location;
+        var marker = new google.maps.Marker({
+            map : map,
+            position : placeLoc,
+            animation: google.maps.Animation.DROP,
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+            infowindow.setContent(place.name);
+            infowindow.open(map, this);
         
-    //     });
-       
-    // }
-   
-   
+        });
+           
+    }
+
     infowindow = new google.maps.InfoWindow();
 }
 function getArt() { 
@@ -134,51 +178,93 @@ function getArt() {
     function callback(results, status) {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
-    
-          var place = results[i];
+
           
+          var place = results[i];
+         
           let content = `<h3>${place.name}</h3>
           <h4>${place.vicinity}</h4>
-          Rating: ${place.rating}`;
-          //createMarker(place);
+          
+          Rating: ${place.rating}<br/>`;
+          
+
           var marker = new google.maps.Marker({
             title: place.name,
             map : map,
             position : place.geometry.location,
             animation: google.maps.Animation.DROP,
+            
         });
+
         var infowindow = new google.maps.InfoWindow({
-            content: content
+            content: content,
+            
         });
+        clearBox(infoBox);
+        results.forEach((place) => {
+            
+            let photos = place.photos;
+            let itemHR = document.createElement('HR');
+            let itemP = document.createElement('h3');
+            let img = document.createElement('img');
+            let itemL = document.createElement('p');
+
+            if(photos != "" && photos != null){
+             img.src = photos[0].getUrl({maxWidth: 99, maxHeight: 99});
+            }else{
+                img.src = "/img/no-image.png";
+            }
+
+            let itemPText = document.createTextNode(`${place.name}`);
+            let itemLText = document.createTextNode(`${place.vicinity}`);
+            
+            itemP.appendChild(itemPText);
+            itemL.appendChild(itemLText);
+
+            infoBox.appendChild(img);
+            infoBox.appendChild(itemP);
+            infoBox.appendChild(itemL);
+            infoBox.appendChild(itemHR);
+            img.addEventListener("click", function(){
+                createMarker(place);
+                //infowindow.open(map,marker);
+            });
+        });
+
         bindInfoWindow(marker, map, infowindow, content);
         marker.setMap(map);
         }
       }
     }
+    function clearBox(elementID)
+            {
+                elementID.innerHTML = "";
+            }
+   
+
     function bindInfoWindow(marker, map, infowindow, html){
         marker.addListener('click', function(){
             infowindow.setContent(html);
             infowindow.open(map, this);
-        })
+        });
     }
-        // function createMarker(place) {
-        //     var placeLoc = place.geometry.location;
-        //     var marker = new google.maps.Marker({
-        //         map : map,
-        //         position : placeLoc,
-        //         animation: google.maps.Animation.DROP,
-        //     });
-    
-        //     google.maps.event.addListener(marker, 'click', function() {
-        //         infowindow.setContent(place.name);
-        //         infowindow.open(map, this);
-            
-        //     });
+
+    function createMarker(place) {
+        var placeLoc = place.geometry.location;
+        var marker = new google.maps.Marker({
+            map : map,
+            position : placeLoc,
+            animation: google.maps.Animation.DROP,
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+            infowindow.setContent(place.name);
+            infowindow.open(map, this);
+        
+        });
            
-        // }
-       
-       
-   
+    }
+
     infowindow = new google.maps.InfoWindow();
 }
 function getOutdoor() { 
@@ -210,50 +296,93 @@ function getOutdoor() {
     function callback(results, status) {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
-    
-          var place = results[i];
+
           
+          var place = results[i];
+         
           let content = `<h3>${place.name}</h3>
           <h4>${place.vicinity}</h4>
-          Rating: ${place.rating}`;
-          //createMarker(place);
+          
+          Rating: ${place.rating}<br/>`;
+          
+
           var marker = new google.maps.Marker({
             title: place.name,
             map : map,
             position : place.geometry.location,
             animation: google.maps.Animation.DROP,
+            
         });
+
         var infowindow = new google.maps.InfoWindow({
-            content: content
+            content: content,
+            
         });
+        clearBox(infoBox);
+        results.forEach((place) => {
+            
+            let photos = place.photos;
+            let itemHR = document.createElement('HR');
+            let itemP = document.createElement('h3');
+            let img = document.createElement('img');
+            let itemL = document.createElement('p');
+
+            if(photos != "" && photos != null){
+             img.src = photos[0].getUrl({maxWidth: 99, maxHeight: 99});
+            }else{
+                img.src = "/img/no-image.png";
+            }
+
+            let itemPText = document.createTextNode(`${place.name}`);
+            let itemLText = document.createTextNode(`${place.vicinity}`);
+            
+            itemP.appendChild(itemPText);
+            itemL.appendChild(itemLText);
+
+            infoBox.appendChild(img);
+            infoBox.appendChild(itemP);
+            infoBox.appendChild(itemL);
+            infoBox.appendChild(itemHR);
+            img.addEventListener("click", function(){
+                createMarker(place);
+                //infowindow.open(map,marker);
+            });
+        });
+
         bindInfoWindow(marker, map, infowindow, content);
         marker.setMap(map);
         }
       }
     }
+    function clearBox(elementID)
+            {
+                elementID.innerHTML = "";
+            }
+   
+
     function bindInfoWindow(marker, map, infowindow, html){
         marker.addListener('click', function(){
             infowindow.setContent(html);
             infowindow.open(map, this);
-        })
+        });
     }
-        // function createMarker(place) {
-        //     var placeLoc = place.geometry.location;
-        //     var marker = new google.maps.Marker({
-        //         map : map,
-        //         position : placeLoc,
-        //         animation: google.maps.Animation.DROP,
-        //     });
-    
-        //     google.maps.event.addListener(marker, 'click', function() {
-        //         infowindow.setContent(place.name);
-        //         infowindow.open(map, this);
-            
-        //     });
+
+    function createMarker(place) {
+        var placeLoc = place.geometry.location;
+        var marker = new google.maps.Marker({
+            map : map,
+            position : placeLoc,
+            animation: google.maps.Animation.DROP,
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+            infowindow.setContent(place.name);
+            infowindow.open(map, this);
+        
+        });
            
-        // }
-       
-       
+    }
+
     infowindow = new google.maps.InfoWindow();
 }
 function getRestaurant() { 
@@ -306,8 +435,6 @@ function getRestaurant() {
     service5 = new google.maps.places.PlacesService(map);
     service5.nearbySearch(request5, callback);
 
-    
-
     function callback(results, status) {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
@@ -315,12 +442,11 @@ function getRestaurant() {
           
           var place = results[i];
           let price = createPrice(place.price_level);
-          
           let content = `<h3>${place.name}</h3>
           <h4>${place.vicinity}</h4>
           <p>Price: ${price}<br/>
           Rating: ${place.rating}<br/>`;
-          //createMarker(place);
+          
 
           var marker = new google.maps.Marker({
             title: place.name,
@@ -334,24 +460,33 @@ function getRestaurant() {
             content: content,
             
         });
-
+        clearBox(infoBox);
         results.forEach((place) => {
+            
             let photos = place.photos;
             let itemHR = document.createElement('HR');
-            let itemP = document.createElement('P');
+            let itemP = document.createElement('h3');
             let img = document.createElement("img");
 
-            img.src = photos[0].getUrl({maxWidth: 99, maxHeight: 99});
-            //document.createElement(`${}`);
-
+            if(photos != "" && photos != null){
+                img.src = photos[0].getUrl({maxWidth: 99, maxHeight: 99});
+               }else{
+                   img.src = "/img/no-image.png";
+               }
+            
 
             let itemPText = document.createTextNode(`${place.name}: $${price}`);
-         
-        
+            
+            
             itemP.appendChild(itemPText);
             infoBox.appendChild(img);
+            
             infoBox.appendChild(itemP);
             infoBox.appendChild(itemHR);
+            img.addEventListener("click", function(){
+                createMarker(place);
+                //infowindow.open(map,marker);
+            });
         });
 
         bindInfoWindow(marker, map, infowindow, content);
@@ -359,7 +494,10 @@ function getRestaurant() {
         }
       }
     }
-    
+    function clearBox(elementID)
+            {
+                elementID.innerHTML = "";
+            }
     function createPrice(level){
         if(level != "" && level != null){
             let out = "";
@@ -371,27 +509,29 @@ function getRestaurant() {
             return "?";
         }
     }
+
     function bindInfoWindow(marker, map, infowindow, html){
         marker.addListener('click', function(){
             infowindow.setContent(html);
             infowindow.open(map, this);
-        })
+        });
     }
-        // function createMarker(place) {
-        //     var placeLoc = place.geometry.location;
-        //     var marker = new google.maps.Marker({
-        //         map : map,
-        //         position : placeLoc,
-        //         animation: google.maps.Animation.DROP,
-        //     });
-    
-        //     google.maps.event.addListener(marker, 'click', function() {
-        //         infowindow.setContent(place.name);
-        //         infowindow.open(map, this);
-            
-        //     });
+
+    function createMarker(place) {
+        var placeLoc = place.geometry.location;
+        var marker = new google.maps.Marker({
+            map : map,
+            position : placeLoc,
+            animation: google.maps.Animation.DROP,
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+            infowindow.setContent(place.name);
+            infowindow.open(map, this);
+        
+        });
            
-        // }
+    }
 
     infowindow = new google.maps.InfoWindow();
 }
@@ -433,51 +573,93 @@ function getExercise() {
     function callback(results, status) {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
-    
-          var place = results[i];
+
           
+          var place = results[i];
+         
           let content = `<h3>${place.name}</h3>
           <h4>${place.vicinity}</h4>
-          Rating: ${place.rating}`;
-          //createMarker(place);
+          
+          Rating: ${place.rating}<br/>`;
+          
+
           var marker = new google.maps.Marker({
             title: place.name,
             map : map,
             position : place.geometry.location,
             animation: google.maps.Animation.DROP,
+            
         });
+
         var infowindow = new google.maps.InfoWindow({
-            content: content
+            content: content,
+            
         });
+        clearBox(infoBox);
+        results.forEach((place) => {
+            
+            let photos = place.photos;
+            let itemHR = document.createElement('HR');
+            let itemP = document.createElement('h3');
+            let img = document.createElement('img');
+            let itemL = document.createElement('p');
+
+            if(photos != "" && photos != null){
+             img.src = photos[0].getUrl({maxWidth: 99, maxHeight: 99});
+            }else{
+                img.src = "/img/no-image.png";
+            }
+
+            let itemPText = document.createTextNode(`${place.name}`);
+            let itemLText = document.createTextNode(`${place.vicinity}`);
+            
+            itemP.appendChild(itemPText);
+            itemL.appendChild(itemLText);
+
+            infoBox.appendChild(img);
+            infoBox.appendChild(itemP);
+            infoBox.appendChild(itemL);
+            infoBox.appendChild(itemHR);
+            img.addEventListener("click", function(){
+                createMarker(place);
+                //infowindow.open(map,marker);
+            });
+        });
+
         bindInfoWindow(marker, map, infowindow, content);
         marker.setMap(map);
         }
       }
     }
+    function clearBox(elementID)
+            {
+                elementID.innerHTML = "";
+            }
+   
+
     function bindInfoWindow(marker, map, infowindow, html){
         marker.addListener('click', function(){
             infowindow.setContent(html);
             infowindow.open(map, this);
-        })
+        });
     }
-        // function createMarker(place) {
-        //     var placeLoc = place.geometry.location;
-        //     var marker = new google.maps.Marker({
-        //         map : map,
-        //         position : placeLoc,
-        //         animation: google.maps.Animation.DROP,
-        //     });
-    
-        //     google.maps.event.addListener(marker, 'click', function() {
-        //         infowindow.setContent(place.name);
-        //         infowindow.open(map, this);
-            
-        //     });
+
+    function createMarker(place) {
+        var placeLoc = place.geometry.location;
+        var marker = new google.maps.Marker({
+            map : map,
+            position : placeLoc,
+            animation: google.maps.Animation.DROP,
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+            infowindow.setContent(place.name);
+            infowindow.open(map, this);
+        
+        });
            
-        // }
-       
-       
-   
+    }
+
     infowindow = new google.maps.InfoWindow();
 }
 function getEntertainment() { 
@@ -524,51 +706,93 @@ function getEntertainment() {
     function callback(results, status) {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
-    
-          var place = results[i];
+
           
+          var place = results[i];
+         
           let content = `<h3>${place.name}</h3>
           <h4>${place.vicinity}</h4>
-          Rating: ${place.rating}`;
-          //createMarker(place);
+          
+          Rating: ${place.rating}<br/>`;
+          
+
           var marker = new google.maps.Marker({
             title: place.name,
             map : map,
             position : place.geometry.location,
             animation: google.maps.Animation.DROP,
+            
         });
+
         var infowindow = new google.maps.InfoWindow({
-            content: content
+            content: content,
+            
         });
+        clearBox(infoBox);
+        results.forEach((place) => {
+            
+            let photos = place.photos;
+            let itemHR = document.createElement('HR');
+            let itemP = document.createElement('h3');
+            let img = document.createElement('img');
+            let itemL = document.createElement('p');
+
+            if(photos != "" && photos != null){
+             img.src = photos[0].getUrl({maxWidth: 99, maxHeight: 99});
+            }else{
+                img.src = "/img/no-image.png";
+            }
+
+            let itemPText = document.createTextNode(`${place.name}`);
+            let itemLText = document.createTextNode(`${place.vicinity}`);
+            
+            itemP.appendChild(itemPText);
+            itemL.appendChild(itemLText);
+
+            infoBox.appendChild(img);
+            infoBox.appendChild(itemP);
+            infoBox.appendChild(itemL);
+            infoBox.appendChild(itemHR);
+            img.addEventListener("click", function(){
+                createMarker(place);
+                //infowindow.open(map,marker);
+            });
+        });
+
         bindInfoWindow(marker, map, infowindow, content);
         marker.setMap(map);
         }
       }
     }
+    function clearBox(elementID)
+            {
+                elementID.innerHTML = "";
+            }
+   
+
     function bindInfoWindow(marker, map, infowindow, html){
         marker.addListener('click', function(){
             infowindow.setContent(html);
             infowindow.open(map, this);
-        })
+        });
     }
-        // function createMarker(place) {
-        //     var placeLoc = place.geometry.location;
-        //     var marker = new google.maps.Marker({
-        //         map : map,
-        //         position : placeLoc,
-        //         animation: google.maps.Animation.DROP,
-        //     });
-    
-        //     google.maps.event.addListener(marker, 'click', function() {
-        //         infowindow.setContent(place.name);
-        //         infowindow.open(map, this);
-            
-        //     });
+
+    function createMarker(place) {
+        var placeLoc = place.geometry.location;
+        var marker = new google.maps.Marker({
+            map : map,
+            position : placeLoc,
+            animation: google.maps.Animation.DROP,
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+            infowindow.setContent(place.name);
+            infowindow.open(map, this);
+        
+        });
            
-        // }
-       
-       
-   
+    }
+
     infowindow = new google.maps.InfoWindow();
 }
 function getFun() { 
@@ -614,50 +838,93 @@ function getFun() {
     function callback(results, status) {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
-    
-          var place = results[i];
+
           
+          var place = results[i];
+         
           let content = `<h3>${place.name}</h3>
           <h4>${place.vicinity}</h4>
-          Rating: ${place.rating}`;
-          //createMarker(place);
+          
+          Rating: ${place.rating}<br/>`;
+          
+
           var marker = new google.maps.Marker({
             title: place.name,
             map : map,
             position : place.geometry.location,
             animation: google.maps.Animation.DROP,
+            
         });
+
         var infowindow = new google.maps.InfoWindow({
-            content: content
+            content: content,
+            
         });
+        clearBox(infoBox);
+        results.forEach((place) => {
+            
+            let photos = place.photos;
+            let itemHR = document.createElement('HR');
+            let itemP = document.createElement('h3');
+            let img = document.createElement('img');
+            let itemL = document.createElement('p');
+
+            if(photos != "" && photos != null){
+             img.src = photos[0].getUrl({maxWidth: 99, maxHeight: 99});
+            }else{
+                img.src = "/img/no-image.png";
+            }
+
+            let itemPText = document.createTextNode(`${place.name}`);
+            let itemLText = document.createTextNode(`${place.vicinity}`);
+            
+            itemP.appendChild(itemPText);
+            itemL.appendChild(itemLText);
+
+            infoBox.appendChild(img);
+            infoBox.appendChild(itemP);
+            infoBox.appendChild(itemL);
+            infoBox.appendChild(itemHR);
+            img.addEventListener("click", function(){
+                createMarker(place);
+                //infowindow.open(map,marker);
+            });
+        });
+
         bindInfoWindow(marker, map, infowindow, content);
         marker.setMap(map);
         }
       }
     }
+    function clearBox(elementID)
+            {
+                elementID.innerHTML = "";
+            }
+   
+
     function bindInfoWindow(marker, map, infowindow, html){
         marker.addListener('click', function(){
             infowindow.setContent(html);
             infowindow.open(map, this);
-        })
+        });
     }
-        // function createMarker(place) {
-        //     var placeLoc = place.geometry.location;
-        //     var marker = new google.maps.Marker({
-        //         map : map,
-        //         position : placeLoc,
-        //         animation: google.maps.Animation.DROP,
-        //     });
-    
-        //     google.maps.event.addListener(marker, 'click', function() {
-        //         infowindow.setContent(place.name);
-        //         infowindow.open(map, this);
-            
-        //     });
+
+    function createMarker(place) {
+        var placeLoc = place.geometry.location;
+        var marker = new google.maps.Marker({
+            map : map,
+            position : placeLoc,
+            animation: google.maps.Animation.DROP,
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+            infowindow.setContent(place.name);
+            infowindow.open(map, this);
+        
+        });
            
-        // }
-       
-       
+    }
+
     infowindow = new google.maps.InfoWindow();
 }
       
@@ -740,12 +1007,12 @@ document.addEventListener('click', e=> {
 })
 
 //about-page stuff
-readMoreBtn.addEventListener('click', (e)=>{
-    text.classList.toggle('show-more');
-    if(readMoreBtn.innerText === 'Read More'){
-        readMoreBtn.innerText = 'Read Less';
-    } else {
-        readMoreBtn.innerText = 'Read More';
-    }
-})
+// readMoreBtn.addEventListener('click', (e)=>{
+//     text.classList.toggle('show-more');
+//     if(readMoreBtn.innerText === 'Read More'){
+//         readMoreBtn.innerText = 'Read Less';
+//     } else {
+//         readMoreBtn.innerText = 'Read More';
+//     }
+// })
 

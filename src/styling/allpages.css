@@ -221,8 +221,29 @@ body{
 }
 .front-page .vertical-menu {
 	width: 350px;
-	height: 250px;
+	height: 350px;
 	overflow-y: auto;
+	background-color: #fbc5c4;
+	justify-content: center;
+	outline: 1px black solid;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px 0 rgb(0, 0, 0, .3);
+
+}
+.front-page .vertical-menu .active{
+	background:#534859;
+	border-radius: 8px;
+	padding: none;
+	color: white;
+}
+.front-page .vertical-menu img{
+	margin: 1rem;
+}
+.front-page .vertical-menu h3{
+	margin: 0.3rem;
+}
+.front-page .vertical-menu p{
+	margin: 0.3rem;
 }
 .vertical-menu a {
 	background-color: #eee;
