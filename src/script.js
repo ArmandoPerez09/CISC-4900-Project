@@ -466,8 +466,8 @@ function getRestaurant() {
             let photos = place.photos;
             let itemHR = document.createElement('HR');
             let itemP = document.createElement('h3');
-            let img = document.createElement("img");
-
+            let img = document.createElement('img');
+            let itemL = document.createElement('p');
             if(photos != "" && photos != null){
                 img.src = photos[0].getUrl({maxWidth: 99, maxHeight: 99});
                }else{
@@ -476,6 +476,8 @@ function getRestaurant() {
             
 
             let itemPText = document.createTextNode(`${place.name}: $${price}`);
+            
+            
             let itemLText = document.createTextNode(`${place.vicinity}`);
             
             itemP.appendChild(itemPText);
