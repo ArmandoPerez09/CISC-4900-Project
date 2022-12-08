@@ -56,64 +56,17 @@
 				<div class="header">
 					<h1><i class="fa-solid fa-fire fa-lg"></i>Trending Right Now <i class="fa-solid fa-fire fa-lg"></i></h1>
 				</div>
+			</div>
+			
+			<div id="cards" class="container"></div>
 
-				<div class="card">
-					<div class="imgBox"><img class="img" src="/img/event1.png"></div>
-					<div class="infobox">
-						<div class="info">
-							<span><h4>Event Name and Date</h4>
-							<h4>Address Here</h4>
-							<p>Event Information Here</p></span>
-						</div>
-						
-						<div class="btnbox">
-							<button class="btn"><i class="fa-regular fa-star fa-lg"></i></button>
-							<button class="btn"><i class="fa-regular fa-rectangle-list fa-lg"></i></i></button>
-							<button class="btn"><i class="fa-solid fa-map fa-lg"></i></button>
-						</div>
-					</div>
-				</div>
-
-				<div class="card">
-					<div class="imgBox"><img class="img" src="/img/event2.png"></div>
-					<div class="infobox">
-						<div class="info">
-							<span><h4>Event Name and Date</h4>
-							<h4>Address Here</h4>
-							<p>Event Information Here</p></span>
-						</div>
-						
-						<div class="btnbox">
-							<button class="btn"><i class="fa-regular fa-star fa-lg"></i></button>
-							<button class="btn"><i class="fa-regular fa-rectangle-list fa-lg"></i></i></button>
-							<button class="btn"><i class="fa-solid fa-map fa-lg"></i></button>
-						</div>
-					</div>
-				</div>
-
-				<div class="card">
-					<div class="imgBox"><img class="img" src="/img/event3.png"></div>
-					<div class="infobox">
-						<div class="info">
-							<span><h4>Event Name and Date</h4>
-							<h4>Address Here</h4>
-							<p>Event Information Here</p></span>
-						</div>
-						
-						<div class="btnbox">
-							<button class="btn"><i class="fa-regular fa-star fa-lg"></i></button>
-							<button class="btn"><i class="fa-regular fa-rectangle-list fa-lg"></i></i></button>
-							<button class="btn"><i class="fa-solid fa-map fa-lg"></i></button>
-						</div>
-					</div>
-				</div>
-				
+			<div class="container">
 				<div class="pagerbox">
-					<button class="pagerbtn"><i class="fa-solid fa-chevron-left fa-2x"></i></button>
-					<button class="pagerbtn"><i class="fa-solid fa-circle"></i></button>
-					<button class="pagerbtn"><i class="fa-solid fa-circle"></i></button>
-					<button class="pagerbtn"><i class="fa-solid fa-circle"></i></button>
-					<button class="pagerbtn"><i class="fa-solid fa-chevron-right fa-2x"></i></button>
+					<button class="pagerbtn" onclick="activeSlide(-1)"><i class="fa-solid fa-chevron-left fa-2x"></i></button>
+					<span class="dot active" onclick="activeButton(0)"></span>
+					<span class="dot" onclick="activeButton(1)"></span>
+					<span class="dot" onclick="activeButton(2)"></span>
+					<button class="pagerbtn" onclick="activeSlide(1)"><i class="fa-solid fa-chevron-right fa-2x"></i></button>
 				</div>
 			</div>
 
@@ -126,7 +79,7 @@
 				</div>
 				<div class="centerbox"><input id="searchInput" class="search" type="text" placeholder="Search events"></div>
 				
-				<div class="section">
+				<div class="section" style="border-radius: 20px 0px 0px 20px;">
 					<div class="contentbox">						
 						<div class="header"><h4>Categories</h4></div>
 						<div class="optionbox1">
@@ -158,7 +111,7 @@
 						
 						<div class="header"><h4>Date</h4></div>
 						<div class="optionbox2">
-							<input type="date" id="start" name="trip-start" value="2022-12-03">
+							<input type="date" id="date" name="start" value="date">
 						</div>
 						
 					</div>
@@ -167,7 +120,7 @@
 				<div class="section">
 					<div class="contentbox">
 						<div class="header"><h4>Event List</h4></div>
-						<div class="eventlist">
+						<div class="eventlist">	
 							<div class="event">Event 1</div>
 							<div class="event">Event 2</div>
 							<div class="event">Event 3</div>
@@ -190,10 +143,10 @@
 					</div>
 				</div>
 
-				<div class="section">
+				<div class="section" style="border-radius: 0px 20px 20px 0px;">
 					<div class="contentbox">
 						<div class="header"><h4>Information</h4></div>
-						<div class="imgBox">
+						<div class="imgbox">
 							<img class="img" src="/img/logo.png">
 						</div>
 						<div class="infobox">
@@ -215,6 +168,241 @@
 	</div>
 	<script src="../script.js"></script>
 	<script src="https://kit.fontawesome.com/2ff391b354.js" crossorigin="anonymous"></script>
+	<script>
+		var eventData, eventSlide = [], cards = "", numCardsDisplayed = 3, trendingEvents, currentSlide = 0
+		eventData = {
+			"events": [
+				{
+					"img": "/img/event1.png",
+					"name": "Event 0",
+					"date": "00/00/00",
+					"time": "0:00 - 0:00",
+					"address": "event ave. 0",
+					"price": "$0",
+					"category": "category0",
+					"description": "long description 0"
+				},
+				{
+					"img": "/img/event1.png",
+					"name": "Event 1",
+					"date": "10/10/10",
+					"time": "1:00 - 1:00",
+					"address": "event ave. 1",
+					"price": "$1",
+					"category": "category1",
+					"description": "long description 1"
+				},
+				{
+					"img": "/img/event1.png",
+					"name": "Event 2",
+					"date": "20/20/20",
+					"time": "2:00 - 2:00",
+					"address": "event ave. 22",
+					"price": "$2",
+					"category": "category2",
+					"description": "long description 2"
+				},
+				{
+					"img": "/img/event2.png",
+					"name": "Event 3",
+					"date": "30/30/30",
+					"time": "3:00 - 3:00",
+					"address": "event ave. 3",
+					"price": "$3",
+					"category": "category3",
+					"description": "long description 3"
+				},
+				{
+					"img": "/img/event2.png",
+					"name": "Event 4",
+					"date": "40/40/40",
+					"time": "4:00 - 4:00",
+					"address": "event ave. 4",
+					"price": "$4",
+					"category": "category4",
+					"description": "long description 4"
+				},
+				{
+					"img": "/img/event2.png",
+					"name": "Event 5",
+					"date": "50/50/50",
+					"time": "5:00 - 5:00",
+					"address": "event ave. 5",
+					"price": "$5",
+					"category": "category5",
+					"description": "long description 5"
+				},
+				{
+					"img": "/img/event3.png",
+					"name": "Event 10",
+					"date": "100/100/100",
+					"time": "10:00 - 10:00",
+					"address": "event ave. 10",
+					"price": "$10",
+					"category": "category10",
+					"description": "long description 10"
+				},
+				{
+					"img": "/img/event3.png",
+					"name": "Event 11",
+					"date": "110/110/110",
+					"time": "11:00 - 11:00",
+					"address": "event ave. 11",
+					"price": "$11",
+					"category": "category11",
+					"description": "long description 11"
+				},
+				{
+					"img": "/img/event3.png",
+					"name": "Event 12",
+					"date": "120/120/120",
+					"time": "12:00 - 12:00",
+					"address": "event ave. 12",
+					"price": "$12",
+					"category": "category12",
+					"description": "long description 12"
+				},
+				{
+					"img": "img 13 path",
+					"name": "Event 13",
+					"date": "130/130/130",
+					"time": "13:00 - 13:00",
+					"address": "event ave. 13",
+					"price": "$13",
+					"category": "category13",
+					"description": "long description 13"
+				},
+				{
+					"img": "img 14 path",
+					"name": "Event 14",
+					"date": "140/140/140",
+					"time": "14:00 - 14:00",
+					"address": "event ave. 14",
+					"price": "$14",
+					"category": "category14",
+					"description": "long description 14"
+				},
+				{
+					"img": "img 15 path",
+					"name": "Event 15",
+					"date": "150/150/150",
+					"time": "15:00 - 15:00",
+					"address": "event ave. 15",
+					"price": "$15",
+					"category": "category15",
+					"description": "long description 15"
+				}
+			]
+		}
+		/*
+		for(let i = 0; i < 9; i++){
+			trendingEvents[i] = eventData.events[i]
+		}
+
+		
+		find a way to import json data
+		if eventdata is empty
+			trending section message: There are no events right now, Try Again Later
+			table section message: There are no events right now. Broaden your search or try again later
+		else
+			implement trending algorithm and create an array of card using the top events trending
+		*/
+		for (let i = 0; i < 3; i++){
+			cards = ""
+			for (let j = 0; j < 3; j++){
+				cards += 
+				"<div class='card'>" +
+					"<div class='imgbox'><img class='img' src=" + eventData.events[j+(3*i)].img + "></div>" +
+					"<div class='infobox'>" +
+					"<div class='info'>" +
+							"<span>" +
+							"<h4>" + eventData.events[j+(3*i)].name + "</h4>" +
+							"<h4>" + eventData.events[j+(3*i)].date + "</h4>" +
+							"<h4>" + eventData.events[j+(3*i)].time + "</h4>" +
+							"<h4>" + eventData.events[j+(3*i)].address + "</h4>" +
+							"<h4>" + eventData.events[j+(3*i)].category + "</h4>" +
+							"<h4>" + eventData.events[j+(3*i)].price + "</h4>" +
+							"<p>" + eventData.events[j+(3*i)].description + "</p>" +
+							"</span>" +
+						"</div>" +
+						"<div class='btnbox'>" +
+							"<button class='btn'><i class='fa-regular fa-star fa-lg'></i></button>" +
+							"<button class='btn'><i class='fa-regular fa-rectangle-list fa-lg'></i></i></button>" +
+							"<button class='btn'><i class='fa-solid fa-map fa-lg'></i></button>" +
+						"</div>" +
+					"</div>" +
+				"</div>"
+			}
+			eventSlide[i] = cards
+		}
+		
+		//createCard = ""	//Check to see if error message works
+		
+		/*if(createCard == ""){
+			createCard ="<h2 style='color: brown'>No Events Found. Try Again</h2>"
+			document.getElementById("cards").innerHTML = eventSlide
+			
+		}else{
+			
+		}*/
+		document.getElementById("cards").innerHTML = eventSlide[currentSlide]	//on start up
+		let dots = document.getElementsByClassName("dot");
+		
+		function activeSlide(iter){	//previous and next button based on n (-1,1)
+			if(currentSlide + iter < 0)	//if currentSlide goes under the number of slides, reset at last slide
+				currentSlide = eventSlide.length - 1
+			else if(currentSlide + iter > eventSlide.length - 1)	//if currentSlide exceeds the number of slides, reset at start
+				currentSlide = 0
+			else	//increments or decrement slide index depending on button pressed
+				currentSlide += iter
+			document.getElementById("cards").innerHTML = eventSlide[currentSlide]	//displays slide
+			
+			for (i = 0; i < dots.length; i++) {		//Resets all dots
+   				dots[i].className = dots[i].className.replace(" active", "");
+  			}
+			dots[currentSlide].className += " active";	//replaces the class currentSlide dot with active
+		}
+		function activeButton(selectedSlide){
+			document.getElementById("cards").innerHTML = eventSlide[selectedSlide]
+			for (i = 0; i < dots.length; i++) {	//Resets all dots
+   				dots[i].className = dots[i].className.replace(" active", "");
+  			}
+			dots[selectedSlide].className += " active";	//replaces the class currentSlide dot with active
+		}
+		
+		function saveEvent(){	//Saves event on user database
+			if(!loggedIn){
+				//redirect to login page
+			}else{
+				//save event for user
+				//add event to user saved event section
+
+			}
+		}
+		function readMore(){
+
+		}
+		function showOnMap(){
+
+		}
+		function setFilters(){
+
+		}
+		function searchEvent(name){
+			/*
+				take search bar input
+					for loop entire list
+						compare subarray of name given to all events.name occurrences
+							save index of all matches
+					if there are matches
+						sort all saved index by date
+							sort all saved index by time			
+						display
+					else
+						display error saying no event matched search
+			*/
+		}
+	</script>
 </body>
 </html>
 
