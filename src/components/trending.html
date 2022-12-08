@@ -111,7 +111,7 @@
 						
 						<div class="header"><h4>Date</h4></div>
 						<div class="optionbox2">
-							<input type="date" id="date" name="start" value="date">
+							<input type="date" id="date" name="start" value=today>
 						</div>
 						
 					</div>
@@ -120,20 +120,9 @@
 				<div class="section">
 					<div class="contentbox">
 						<div class="header"><h4>Event List</h4></div>
-						<div class="eventlist">	
-							<div class="event">Event 1</div>
-							<div class="event">Event 2</div>
-							<div class="event">Event 3</div>
-							<div class="event">Event 4</div>
-							<div class="event">Event 5</div>
-							<div class="event">Event 6</div>
-							<div class="event">Event 7</div>
-							<div class="event">Event 8</div>
-							<div class="event">Event 9</div>
-							<div class="event">Event 10</div>		
-						</div>
+						<div id="events" class="eventlist"></div>
 					
-						<div class="eventpagerbox">
+						<div id="pager" class="eventpagerbox">
 							<button class="pagerbtn"><i class="fa-solid fa-chevron-left fa-2x"></i></button>
 							<button class="numericpagerbtn">1</button>
 							<button class="numericpagerbtn">2</button>
@@ -144,7 +133,7 @@
 				</div>
 
 				<div class="section" style="border-radius: 0px 20px 20px 0px;">
-					<div class="contentbox">
+					<div id="eventinfo" class="contentbox">
 						<div class="header"><h4>Information</h4></div>
 						<div class="imgbox">
 							<img class="img" src="/img/logo.png">
@@ -169,156 +158,294 @@
 	<script src="../script.js"></script>
 	<script src="https://kit.fontawesome.com/2ff391b354.js" crossorigin="anonymous"></script>
 	<script>
-		var eventData, eventSlide = [], cards = "", numCardsDisplayed = 3, trendingEvents, currentSlide = 0
-		eventData = {
+
+		/*Mock Data: Generic*/
+		var eventData = {
 			"events": [
 				{
-					"img": "/img/event1.png",
-					"name": "Event 0",
-					"date": "00/00/00",
-					"time": "0:00 - 0:00",
-					"address": "event ave. 0",
-					"price": "$0",
-					"category": "category0",
-					"description": "long description 0"
+					"img": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F298786339%2F226667758798%2F1%2Foriginal.20220607-172215?w=512&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C217%2C636%2C318&s=be6b400740a1d2beacc2bd5fa92cfea2",
+					"name": "New Year's Eve 2023 @230 Fifth Rooftop",
+					"date": "Sat, Dec 31",
+					"time": "8:00 PM",
+					"address": "230 5th Ave • New York, NY",
+					"price": "Starts at $193.30",
+					"category": "Music ",
+					"description": "Celebrate New Year's Eve at NYC's largest indoor & outdoor bar! Join us for our annual New Year's Eve Extravaganza!"
+				},
+				{
+					"img": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F144930473%2F51234595122%2F1%2Foriginal.20210818-185920?w=512&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C198%2C2100%2C1050&s=34639f44e515c9b00764a8dea916af70",
+					"name": "Sunday Sqool Comedy",
+					"date": "Sun, Dec 11",
+					"time": "7:45 PM",
+					"address": "Sour Mouse • New York, NY",
+					"price": "Starts at $12.24",
+					"category": "Arts",
+					"description": "The most diverse, talented comedians in NYC come together at this show, and it's topped off w/ an afterparty."
+				},
+				{
+					"img": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F404522969%2F116012978731%2F1%2Foriginal.20221204-194748?w=512&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C377%2C1200%2C600&s=4e1f154b8ec373f9d264a62ae9625616",
+					"name": "Black Health Connect: NYC - Q4 Mixer + Toy Drive",
+					"date": "Fri, Dec 16",
+					"time": "5:00 PM",
+					"address": "Harbor NYC Rooftop • New York, NY",
+					"price": "RSVP and a Toy are required for free entry",
+					"category": "Health",
+					"description": "COMING TOGETHER TODAY, FOR A MORE SUCCESSFUL TOMORROW."
+				},
+				{
+					"img": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F402169529%2F66299487319%2F1%2Foriginal.20221130-054645?w=512&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C13%2C1024%2C512&s=19af6eab00379e0e931c8436fffeb1ed",
+					"name": "Ladies Drink For Free NYC #1 Party Lux Saturdays At Cavali NYC",
+					"date": "Sat, Dec 10",
+					"time": "11:00 PM",
+					"address": "Cavali New York • Queens, NY",
+					"price": "Ladies Free Before Midnight W/RSVP - Men Free Before 11:30PM W/RSVP",
+					"category": "Food&Drink",
+					"description": "NYC #1 Celebrity Party , Never know who will show up at Lux Saturdays"
+				},
+				{
+					"img": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F344608609%2F254534975312%2F1%2Foriginal.20220830-123450?w=940&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C1305%2C3300%2C1650&s=cd3384368f839b390e1487e04317c211",
+					"name": "Oddities Flea Market New York City",
+					"date": "Sat, Dec 10",
+					"time": "11:00 AM",
+					"address": "Metropolitan Pavilion • New York, NY",
+					"price": "Starts at $22.85",
+					"category": "Hobbies",
+					"description": "Oddities Flea Market is thrilled to welcome you to the Metropolitan Pavilion in Manhattan this winter!"
+				},
+				{
+					"img": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F368715519%2F471091208451%2F1%2Foriginal.20220909-131911?w=940&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C16%2C1080%2C540&s=7c8916fd6004581e4d1d4fa07877708a",
+					"name": "n00b york city",
+					"date": "Tue, Dec 13",
+					"time": "8:00 PM",
+					"address": "BrookLAN • Brooklyn, NY",
+					"price": "Free",
+					"category": "Hobbies",
+					"description": "Where top comedians and seasoned gamers collide!"
+				},
+				{
+					"img": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F129222591%2F197361445633%2F1%2Foriginal.20210316-120602?w=940&auto=format%2Ccompress&q=75&sharp=10&rect=173%2C0%2C2160%2C1080&s=8aa946aeb0dfa8e69ddab124b14fcced",
+					"name": "New York Tech Career Fair: Exclusive Tech Hiring Event",
+					"date": "Fri, Dec 16",
+					"time": "12:00 PM",
+					"address": "Moved to Virtual Event • New York, NY",
+					"price": "Free",
+					"category": "Business",
+					"description": "Tech Career Fair focus on helping companies achieve their diversity and inclusivity initiative with more diverse non-traditional candidates"
+				},
+				{
+					"img": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F397453229%2F155520257281%2F1%2Foriginal.20221121-175844?w=512&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C0%2C1350%2C675&s=322f669e90f2c64e1443751800297d10",
+					"name": "Gala Galactica: New Year's Eve",
+					"date": "Sat, Dec 31",
+					"time": "10:00 PM",
+					"address": "House of Yes • Brooklyn, NY",
+					"price": "Starts at $69.38",
+					"category": "Music",
+					"description": "House of Yes presents Gala Galactica: New Year's Eve #happyholidays #nye"
+				},
+				{
+					"img": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F382548449%2F9011001541%2F1%2Foriginal.20221028-233528?w=940&auto=format%2Ccompress&q=75&sharp=10&rect=8%2C392%2C1072%2C536&s=bfafa72203be0d0d2d29e5b17d4f5267",
+					"name": "Mixed Media Street Art Exhibition #2 - NYC",
+					"date": "Today",
+					"time": "6:00 PM",
+					"address": "Hudson Yards Gallery • New York, NY",
+					"price": "Free",
+					"category": "Arts",
+					"description": "Bringing NYC street artists together, a second time, for a 4-day showing of incredible mixed media art."
+				},
+				{
+					"img": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F397799929%2F808659416043%2F1%2Foriginal.20221122-030325?w=940&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C0%2C1600%2C800&s=95f890b035e29f0cf93e08c3ac64f4d2",
+					"name": "AFL Muay Thai-GAME CHANGER",
+					"date": "Tomorrow",
+					"time": "6:00 PM",
+					"address": "The Post BK • Brooklyn, NY",
+					"price": "Starts at $54.98",
+					"category": "Fitness",
+					"description": "Come join us as we take our show to Brooklyn"
+				},
+				{
+					"img": "/img/logo.png",
+					"name": "10",
+					"date": "10",
+					"time": "10",
+					"address": "10",
+					"price": "10",
+					"category": "10",
+					"description": "10"
+				},
+				{
+					"img": "/img/logo.png",
+					"name": "11",
+					"date": "11",
+					"time": "11",
+					"address": "11",
+					"price": "11",
+					"category": "11",
+					"description": "11"
 				},
 				{
 					"img": "/img/event1.png",
-					"name": "Event 1",
-					"date": "10/10/10",
-					"time": "1:00 - 1:00",
-					"address": "event ave. 1",
-					"price": "$1",
-					"category": "category1",
-					"description": "long description 1"
+					"name": "12",
+					"date": "12",
+					"time": "12",
+					"address": "12",
+					"price": "12",
+					"category": "12",
+					"description": "12"
 				},
 				{
 					"img": "/img/event1.png",
-					"name": "Event 2",
-					"date": "20/20/20",
-					"time": "2:00 - 2:00",
-					"address": "event ave. 22",
-					"price": "$2",
-					"category": "category2",
-					"description": "long description 2"
+					"name": "12",
+					"date": "12",
+					"time": "12",
+					"address": "12",
+					"price": "12",
+					"category": "12",
+					"description": "12"
+				},
+				{
+					"img": "/img/event1.png",
+					"name": "13",
+					"date": "13",
+					"time": "13",
+					"address": "13",
+					"price": "13",
+					"category": "13",
+					"description": "13"
 				},
 				{
 					"img": "/img/event2.png",
-					"name": "Event 3",
-					"date": "30/30/30",
-					"time": "3:00 - 3:00",
-					"address": "event ave. 3",
-					"price": "$3",
-					"category": "category3",
-					"description": "long description 3"
+					"name": "14",
+					"date": "14",
+					"time": "14",
+					"address": "14",
+					"price": "14",
+					"category": "14",
+					"description": "14"
 				},
 				{
 					"img": "/img/event2.png",
-					"name": "Event 4",
-					"date": "40/40/40",
-					"time": "4:00 - 4:00",
-					"address": "event ave. 4",
-					"price": "$4",
-					"category": "category4",
-					"description": "long description 4"
+					"name": "15",
+					"date": "15",
+					"time": "15",
+					"address": "15",
+					"price": "15",
+					"category": "15",
+					"description": "15"
 				},
 				{
 					"img": "/img/event2.png",
-					"name": "Event 5",
-					"date": "50/50/50",
-					"time": "5:00 - 5:00",
-					"address": "event ave. 5",
-					"price": "$5",
-					"category": "category5",
-					"description": "long description 5"
+					"name": "16",
+					"date": "16",
+					"time": "16",
+					"address": "16",
+					"price": "16",
+					"category": "16",
+					"description": "16"
 				},
 				{
 					"img": "/img/event3.png",
-					"name": "Event 10",
-					"date": "100/100/100",
-					"time": "10:00 - 10:00",
-					"address": "event ave. 10",
-					"price": "$10",
-					"category": "category10",
-					"description": "long description 10"
+					"name": "17",
+					"date": "17",
+					"time": "17",
+					"address": "17",
+					"price": "17",
+					"category": "17",
+					"description": "17"
 				},
 				{
 					"img": "/img/event3.png",
-					"name": "Event 11",
-					"date": "110/110/110",
-					"time": "11:00 - 11:00",
-					"address": "event ave. 11",
-					"price": "$11",
-					"category": "category11",
-					"description": "long description 11"
+					"name": "18",
+					"date": "18",
+					"time": "18",
+					"address": "18",
+					"price": "18",
+					"category": "18",
+					"description": "18"
 				},
 				{
 					"img": "/img/event3.png",
-					"name": "Event 12",
-					"date": "120/120/120",
-					"time": "12:00 - 12:00",
-					"address": "event ave. 12",
-					"price": "$12",
-					"category": "category12",
-					"description": "long description 12"
+					"name": "19",
+					"date": "19",
+					"time": "19",
+					"address": "19",
+					"price": "19",
+					"category": "19",
+					"description": "19"
 				},
 				{
-					"img": "img 13 path",
-					"name": "Event 13",
-					"date": "130/130/130",
-					"time": "13:00 - 13:00",
-					"address": "event ave. 13",
-					"price": "$13",
-					"category": "category13",
-					"description": "long description 13"
+					"img": "/img/logo.png",
+					"name": "20",
+					"date": "20",
+					"time": "20",
+					"address": "20",
+					"price": "20",
+					"category": "20",
+					"description": "20"
 				},
 				{
-					"img": "img 14 path",
-					"name": "Event 14",
-					"date": "140/140/140",
-					"time": "14:00 - 14:00",
-					"address": "event ave. 14",
-					"price": "$14",
-					"category": "category14",
-					"description": "long description 14"
+					"img": "/img/logo.png",
+					"name": "21",
+					"date": "21",
+					"time": "21",
+					"address": "21",
+					"price": "21",
+					"category": "21",
+					"description": "21"
 				},
 				{
-					"img": "img 15 path",
-					"name": "Event 15",
-					"date": "150/150/150",
-					"time": "15:00 - 15:00",
-					"address": "event ave. 15",
-					"price": "$15",
-					"category": "category15",
-					"description": "long description 15"
+					"img": "/img/logo.png",
+					"name": "22",
+					"date": "22",
+					"time": "22",
+					"address": "22",
+					"price": "22",
+					"category": "22",
+					"description": "22"
 				}
 			]
 		}
-		/*
-		for(let i = 0; i < 9; i++){
-			trendingEvents[i] = eventData.events[i]
-		}
-
 		
-		find a way to import json data
-		if eventdata is empty
-			trending section message: There are no events right now, Try Again Later
-			table section message: There are no events right now. Broaden your search or try again later
-		else
-			implement trending algorithm and create an array of card using the top events trending
+		/*Trending Section*/
+		var eventSlide = [], cards = "", currentSlide = 0
+
+		/*
+		var numTopEvents = 8, maxSlides = 3, numSlides
+		if(eventData.events.length == 0){
+			cards ="<h2 style='color: brown'>No Events Found. Try Again</h2>"
+			document.getElementById("cards").innerHTML = eventSlide
+		}else{	
+			generateTopEvents()	//create an array of events with max num 9
+			numTopEvents = topEvents.length
+			if(numTopEvents % maxSlides == 0)
+				numSlides = numTopEvents/maxSlides
+			else
+				numSlides = (numTopEvents/maxSlides) + 1
+			for (let i = 0; i < numSlides; i++){	//creates three slides, each with three cards
+				cards = ""	//reset cards
+				if(numTopEvents - (3 * i) >= 3){
+					cardNum = 3
+				}		
+				else{
+					cardNum = numTopEvents - (3 * i)
+				}
+				for (let j = 0; j < cardNum; j++){
+					cards = make card 
+				}
+				eventSlide[i] = cards
+			}
 		*/
-		for (let i = 0; i < 3; i++){
-			cards = ""
-			for (let j = 0; j < 3; j++){
-				cards += 
+
+		for (let i = 0; i < 3; i++){	//creates three slides, each with three cards
+			cards = ""	//reset cards
+			for (let j = 0; j < 3; j++){	//Creates three Cards
+				cards += 					//use the eventData index to generate cards
 				"<div class='card'>" +
 					"<div class='imgbox'><img class='img' src=" + eventData.events[j+(3*i)].img + "></div>" +
 					"<div class='infobox'>" +
 					"<div class='info'>" +
 							"<span>" +
 							"<h4>" + eventData.events[j+(3*i)].name + "</h4>" +
-							"<h4>" + eventData.events[j+(3*i)].date + "</h4>" +
-							"<h4>" + eventData.events[j+(3*i)].time + "</h4>" +
+							"<h4>" + eventData.events[j+(3*i)].date + ", " + eventData.events[j+(3*i)].time + "</h4>" +
 							"<h4>" + eventData.events[j+(3*i)].address + "</h4>" +
 							"<h4>" + eventData.events[j+(3*i)].category + "</h4>" +
 							"<h4>" + eventData.events[j+(3*i)].price + "</h4>" +
@@ -333,21 +460,23 @@
 					"</div>" +
 				"</div>"
 			}
-			eventSlide[i] = cards
+			eventSlide[i] = cards	//adds all cards to currernt index of eventSlide
 		}
 		
 		//createCard = ""	//Check to see if error message works
 		
 		/*if(createCard == ""){
-			createCard ="<h2 style='color: brown'>No Events Found. Try Again</h2>"
+			cards ="<h2 style='color: brown'>No Events Found. Try Again</h2>"
 			document.getElementById("cards").innerHTML = eventSlide
 			
 		}else{
 			
 		}*/
 		document.getElementById("cards").innerHTML = eventSlide[currentSlide]	//on start up
-		let dots = document.getElementsByClassName("dot");
+		var dots = document.getElementsByClassName("dot");	//Array holding all elements with "dot class
 		
+
+
 		function activeSlide(iter){	//previous and next button based on n (-1,1)
 			if(currentSlide + iter < 0)	//if currentSlide goes under the number of slides, reset at last slide
 				currentSlide = eventSlide.length - 1
@@ -362,6 +491,8 @@
   			}
 			dots[currentSlide].className += " active";	//replaces the class currentSlide dot with active
 		}
+
+
 		function activeButton(selectedSlide){
 			document.getElementById("cards").innerHTML = eventSlide[selectedSlide]
 			for (i = 0; i < dots.length; i++) {	//Resets all dots
@@ -370,21 +501,43 @@
 			dots[selectedSlide].className += " active";	//replaces the class currentSlide dot with active
 		}
 		
-		function saveEvent(){	//Saves event on user database
-			if(!loggedIn){
-				//redirect to login page
-			}else{
-				//save event for user
-				//add event to user saved event section
-
-			}
+		/*Table Section Script*/
+		var eventTab = "",info = ""
+		for(let i = 0; i < 10; i++){
+			eventTab += 
+				"<div class='event' onclick='loadinfo(" + i + ")'>" + 
+					(i + 1) + ". " + eventData.events[i].name + " " + eventData.events[i].date + " " + eventData.events[i].time + 
+				"</div>"
 		}
-		function readMore(){
+		document.getElementById("events").innerHTML = eventTab
+		loadinfo(0)
 
+		function loadinfo(index){	//Loads information of event at index onto the info section of the table
+			info = 
+				"<div class='header'><h4>Information</h4></div>" +
+					"<div class='imgbox'>" +
+						"<img class='img' src=" + eventData.events[index].img + ">" +
+					"</div>" +
+					"<div class='infobox'>" +
+						"<div class='info'>" +
+							"<span>" +
+							"<h4>" + eventData.events[index].name + "</h4>" +
+							"<h4>" + eventData.events[index].date + ", " + eventData.events[index].time + "</h4>" +
+							"<h4>" + eventData.events[index].address + "</h4>" +
+							"<h4>" + eventData.events[index].category + "</h4>" +
+							"<h4>" + eventData.events[index].price + "</h4>" +
+							"<p>" + eventData.events[index].description + "</p>" +
+							"</span>" +
+						"</div>" +
+						"<div class='btnbox'>" +
+							"<button class='btn'><i class='fa-regular fa-star fa-lg'></i></button>" +
+							"<button class='btn'><i class='fa-regular fa-rectangle-list fa-lg'></i></i></button>" +
+							"<button class='btn'><i class='fa-solid fa-map fa-lg'></i></button>" +
+						"</div>" +
+					"</div>"
+			document.getElementById("eventinfo").innerHTML = info
 		}
-		function showOnMap(){
 
-		}
 		function setFilters(){
 
 		}
@@ -401,6 +554,24 @@
 					else
 						display error saying no event matched search
 			*/
+		}
+
+		/*Buttons for info box*/
+		function saveEvent(){	//Saves event on user database
+			if(!loggedIn){
+				//redirect to login page
+			}else{
+				//save event for user
+				//add event to user saved event section
+
+			}
+		}
+
+		function readMore(){
+
+		}
+		function showOnMap(){
+
 		}
 	</script>
 </body>
