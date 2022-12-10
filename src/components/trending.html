@@ -105,11 +105,11 @@
 						<div class="header"><h4>Price</h4></div> 
 						<div class="optionbox2">
 							<span class="options2"><label for="free"><h5>Free</h5></label>
-							<input type="checkbox" id="free" name="free" value="free"></span>
+							<input type="checkbox" onclick="togglePricing('Free')"></span>
 							<span class="options2"><label for="paid"><h5>Paid</h5></label>	
-							<input type="checkbox" id="paid" name="paid" value="paid"></span>
-							<span class="options2"><label for="both"><h5>Both</h5></label>
-							<input type="checkbox" id="both" name="both" value="both"></span>
+							<input type="checkbox" onclick="togglePricing('Paid')"></span>
+							<span class="options2"><label for="special"><h5>Special</h5></label>	
+							<input type="checkbox" onclick="togglePricing('Special')"></span>
 						</div>
 						
 						<div class="header"><h4>Date</h4></div>
@@ -766,7 +766,7 @@
 			else
 				pageNum = (numMatchedEvents/maxNumEventTabs) + 1	//Creates extra page for excess events
 
-			for (let i = 0; i < pageNum - 1; i++){					//Populates current page iteration
+			for (let i = 0; i < pageNum; i++){					//Populates current page iteration
 				eventTabs = ""
 				if(numMatchedEvents - (maxNumEventTabs * i) >= maxNumEventTabs){	//Number of events to be added to page
 					eventNum = maxNumEventTabs
@@ -783,9 +783,12 @@
 						"</div>"
 				}
 				pages[i] = eventTabs	//HTML of event tabs added to current page
-				
+				if(pages[i] == ""){		//Prevent Empty pages from being displayed
+					pages.pop()
+					pageNum--
+				}					
 			}
-			currentPage = 0
+			currentPage = 0		//Loads the first event of page onto the info section
 		}
 
 		filterEvents()
@@ -817,94 +820,95 @@
 		}
 
 		function changePage(iter){	//Navigates through pages
-			if(currentPage + iter < 0)	//if currentSlide goes under the number of slides, reset at last slide
+			if(currentPage + iter < 0)	//If pages goes out of bounds to the left, reset to first page
 				currentPage = 0
-			else if(currentPage + iter > pages.length - 1)	//if currentSlide exceeds the number of slides, reset at start
+			else if(currentPage + iter > pages.length - 1)	//If pages goes out of bounds to the right, reset to last page
 				currentPage = pages.length - 1
 			else	//increments or decrement slide index depending on button pressed
 				currentPage += iter
-			document.getElementById("events").innerHTML = pages[currentPage]	//displays slide
+			document.getElementById("events").innerHTML = pages[currentPage]	//displays page
 		}
 
-		function allEvents(){
-			matchedEvents = []
-			for(let i = 0; i < eventData.events.length; i++){
+		function allEvents(){	//Resets the matchedEvents to all events
+			matchedEvents = []	//Resets matchedEvents
+			for(let i = 0; i < eventData.events.length; i++){	//Stores every index
 				matchedEvents.push(i)
 			}
-			numMatchedEvents = matchedEvents.length
+			numMatchedEvents = matchedEvents.length		//Updates length of matchedEvents
 		}
 
-		function filterCateg(categs){
-			var indexes = []
-			for(let i = 0; i < categs.length; i++){
-				for(let j = 0; j < numMatchedEvents; j++)
-					if(categs[i] == eventData.events[j].category){
+		function filterCateg(categs){	//Stores all indexes that match the categories chosen
+			var indexes = []			//array of matched Indexes
+			for(let i = 0; i < categs.length; i++){		//iterates through the categories chosen
+				for(let j = 0; j < numMatchedEvents; j++)		//Iterates through all events
+					if(categs[i] == eventData.events[j].category){		//pushes index to array if matched
 						indexes.push(j)
 					}
 			}
-			matchedEvents = indexes.slice()	
-			alert(matchedEvents.length)
-			numMatchedEvents = matchedEvents.length
+			matchedEvents = indexes.slice()		//matchedEvents copies indexes array
+			numMatchedEvents = matchedEvents.length		//Update length of matchedEvents
 		}
 
-		function filterPricing(pricing){
-			var indexes = [], count = 0
-			for(let i = 0; i < pricing.length; i++){
-				for(let j = 0; j < numMatchedEvents; j++)
-					if(pricing[i] == eventData.events[j].price){
-						indexes[count] = j
-						count++
-					}
-			}
-			matchedEvents = indexes
-			numMatchedEvents = indexes.length
-		}
-
-		function filterDate(date){
-			var indexes = [], count = 0
-			for(let i = 0; i < date.length; i++){
-				if(date[i] == eventData.events[j].date){
-					indexes[count] = j
-					count++
+		function filterPricing(pricing){	//Stores all indexes that match the pricing chosen
+			var indexes = []		//array of matched Indexes
+			for(let i = 0; i < pricing.length; i++){		//iterates through the pricing chosen
+				for(let j = 0; j < numMatchedEvents; j++){	
+						//Iterates through all events
+					if(pricing[i] == eventData.events[j].price)		//pushes index to array if matched
+						indexes.push(j)
+					if((pricing[i] == "Paid") && eventData.events[j].price.includes('$'))		//pushes index to array if matched
+						indexes.push(j)
+					if((pricing[i] == "Special") && ((eventData.events[j].price != "Free"))  == !(eventData.events[j].price.includes('$')))
+						indexes.push(j)
 				}
 			}
-			matchedEvents = indexes
-			numMatchedEvents = indexes.length
+			matchedEvents = indexes.slice()		//matchedEvents copies indexes array
+			numMatchedEvents = matchedEvents.length		//Update length of matchedEvents
+		}
+
+		function filterDate(date){	//Stores all indexes that match the date chosen
+			var indexes = []		//array of matched Indexes
+			for(let i = 0; i < date.length; i++){		//iterates through the date chosen
+				for(let j = 0; j < numMatchedEvents; j++)		//Iterates through all events
+					if(date[i] == eventData.events[j].date){		//pushes index to array if matched
+						indexes.push(j)
+					}
+			}
+			matchedEvents = indexes			//matchedEvents copies indexes array
+			numMatchedEvents = indexes.length	//Update length of matchedEvents
 		}
 
 		
 
-		function toggleCateg(value){
-			var index = categs.indexOf(value);
-			if (index == -1) {
+		function toggleCateg(value){		//Toggles the category chosen
+			var index = categs.indexOf(value);	//Searches for index of category
+			if (index == -1) {				//If not found, add it to the array of categories
 				categs.push(value);
-			} else {
+			} else {						//Else, if found, remove from array
 				categs.splice(index, 1);
 			}
-			filterEvents()
+			filterEvents()					//Updates the matchedEvents with categories chosen
 		}
 
-		function togglePricing(value){
-			var index = pricing.indexOf(value);
-			if (index == -1) {
-				pricing.push(value);
-			} else {
+		function togglePricing(value){		//Toggles the pricing chosen
+			var index = pricing.indexOf(value);	//Searches for index of pricing
+			if (index == -1) {				//If not found, add it to the array of pricing
+				pricing.push(value);		
+			} else {						//Else, if found, remove from array
 				pricing.splice(index, 1);
 			}
-			filterEvents()
+			filterEvents()					//Updates the matchedEvents with pricing chosen
 		}
 
-		function toggleDate(value){
-			var index = date.indexOf(value);
-			if (index == -1) {
+		function toggleDate(value){			//Toggles the date chosen
+			var index = date.indexOf(value);	//Searches for index of date
+			if (index == -1) {				//If not found, add it to the array of dates
 				date.push(value);
 			} else {
-				date.splice(index, 1);
+				date.splice(index, 1);		//Else, if found, remove from array
 			}
-			filterEvents()
+			filterEvents()					//Updates the matchedEvents with date chosen
 		}
-
-
 
 		/*
 		function searchEvent(value){
@@ -913,12 +917,6 @@
 					for loop entire list
 						compare subarray of name given to all events.name occurrences
 							save index of all matches
-					if there are matches
-						sort all saved index by date
-							sort all saved index by time			
-						display
-					else
-						display error saying no event matched search
 			*/
 
 
