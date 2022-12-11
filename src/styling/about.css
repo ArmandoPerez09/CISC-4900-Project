@@ -1,39 +1,11 @@
-
-.logo{
-	max-width: 7.5rem;
-}
-body{
-	height: 100vh;
-	position: flex;
-	overflow-x: hidden;
-}
-.navbar{
-	display: flex;
-}
-
-.design_img{
-	width: 100px;
-	max-height: 100px;
-}
-
-.planning_img{
-	width: 100px;
-	max-height: 100px;
-}
-
-.team_img{
-	width: 100px;
-	max-height: 100px;
-}
 .cards{
 	display: flex;
-	margin-top: 210px;
+	margin-top: 10%;
 	align-items: center;
 	justify-content: center;
-	min-height: 340px;
+	min-height: 400px;
     grid-template-columns: 33% 33% 33%;
-	width: 80%;
-	margin-left: 139px;
+	width: 100%;
 }
 .cards div {
 	height: 615px;
@@ -89,104 +61,13 @@ background:rgba(0,0,0,0.4);
     display: inline;
 }
 
-
-
-
-					/*Media Queries*/
-
-
-@media only screen and(max-width: 400px){
-	#gridContainer{
-		overflow: hidden;
-		overflow-y: scroll;
-	}
-
-	.div2{
-		max-width: 1000px;
+@media screen and (max-width: 1400px) {
+	.cards{
+		display: block;
+		position: absolute;
+   	 	left: 30%;
+   		margin-right: -50%;
+		align-items: center;
+		justify-content: center;
 	}
 }
-@media only screen and(min-width: 640px){
-	
-}
-
-@media only screen and (max-width: 896px){
-	body{
-		height: 100vh;
-		width: 100%;
-	}
-	#gridContainer{
-		font-size: 12px;
-		margin-left: -5.5rem;
-		margin-top: -50px;
-	}
-
-	.div1,
-	
-	.div3{
-		max-height: 500px;
-	}
-
-	.div2{
-		width:1rem;
-	}
-
-	.design_img,
-	.planning_img,
-	.team_img{
-		width: 50px;
-		max-height: 50px;
-	}
-	
-	
-	
-}
-	
-@media only screen and(max-width: 1024px){
-	.logo{
-		max-width: 10px;
-	}
-	
-	#gridContainer{
-		font-size: 12px;
-
-	}
-	.div1,
-	
-	.div3{
-		max-height: 500px;
-	}
-
-	.div2{
-		max-width: 10px;
-	}
-	  
-}
-
-
-
-
-
-@media only screen and(max-width: 1366px){
-	.logo{
-		max-width: 10px;
-	}
-	.cards div{
-		margin-left: -1000px;
-		max-width: 10px;
-	}
-
-	#gridContainer{
-		display: grid; 
-
-		grid-template-rows: 1fr 1fr;
-		grid-template-columns: 1fr 1fr;
-		
-		max-height: 10px;
-		
-	 }
-	   
-	
-}
-
-
-

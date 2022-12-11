@@ -126,8 +126,8 @@ body{
     grid-row-gap: 1px;
 }
 .center .center-right button{
-	margin-left: 0px;
-	margin-top: 10px;
+	margin-left: 20%;
+	margin-top: 3rem;
 }
 .center-right div{
 	align-items: center;
@@ -137,6 +137,7 @@ body{
 	margin-top: 0px;
 }
 .corn-guy{
+	margin-left: 20%;
     width: auto;
 }
 .corn-guy:hover {
@@ -227,6 +228,7 @@ body{
 	justify-content: center;
 	outline: 1px black solid;
 	border-radius: 5px;
+	margin-left: auto;
 	box-shadow: 0 2px 5px 0 rgb(0, 0, 0, .3);
 
 }
