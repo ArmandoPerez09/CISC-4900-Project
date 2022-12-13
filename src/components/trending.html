@@ -1,16 +1,4 @@
-<!--
-	TODO LIST
-	*	SHOW ALL EVENTS BY DEFAULT, WHEN LOGGED IN, SHOW ONLY EVENTS PREFERRED BY USER
-	*	ADD SLIDING CARDS FOR TRENDING EVENTS (USE PLACEHOLDERS)
-	*	ADD MULTIPLE SLIDING CARDS BASED ON DIFFERENT CRITERIAS (TRENDING, NEAR, PRICE, UPCOMING)
-	*	ADD A SHOW ON MAP, MORE INFO, AND SAVE EVENT BUTTON ON CARDS (x)
-	* 	ADD FUNCTIONALITY TO BUTTONS
-			-	SHOW ON MAP BUTTON REDIRECTS USER TO INDEX.HTML WITH LOCATION OF EVENT CENTERED ON MAP
-			-	MORE INFO BUTTON REDIRECTS USER TO URL OF EVENT
-			-	SAVE EVENT BUTTON ADDS DESIRED EVENTS TO A LIST OF SAVED EVENTS
-	*	ADD TAG(S) ON CARD BASED ON THE TYPE OF EVENT IT IS, MUSIC ART FREE ETC.
-	*		-	Make container for image, category, and buttons
--->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,10 +43,12 @@
 			<div class="container">
 				<!--Header for trending section-->
 				<div class="header">
-					<h1><i class="fa-solid fa-fire fa-lg"></i>Trending Right Now <i class="fa-solid fa-fire fa-lg"></i></h1>
+					<h1 class="trendingTitle">Trending Right Now </h1>
 				</div>
 			</div>
 			
+			<p id="user-list"></p> 
+
 			<!--Generates Cards for Top events-->
 			<div id="cards" class="container">No Events Found</div>
 
@@ -148,496 +138,17 @@
 				</div>
 			</div>
 		</div>
+		
 	</div>
 	<script src="../script.js"></script>
 	<script src="https://kit.fontawesome.com/2ff391b354.js" crossorigin="anonymous"></script>
+	
+	<script src="../data/theUltimateFile.js"></script>
 	<script>
 
 /*******Mock Data: Generic*******/
-		var eventData = {
-			"events": [
-				{
-					"img": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F298786339%2F226667758798%2F1%2Foriginal.20220607-172215?w=512&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C217%2C636%2C318&s=be6b400740a1d2beacc2bd5fa92cfea2",
-					"name": "New Year's Eve 2023 @230 Fifth Rooftop",
-					"date": "Sat, Dec 31",
-					"time": "8:00 PM",
-					"address": "230 5th Ave • New York, NY",
-					"price": "Starts at $193.30",
-					"category": "Music",
-					"description": "Celebrate New Year's Eve at NYC's largest indoor & outdoor bar! Join us for our annual New Year's Eve Extravaganza!"
-				},
-				{
-					"img": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F144930473%2F51234595122%2F1%2Foriginal.20210818-185920?w=512&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C198%2C2100%2C1050&s=34639f44e515c9b00764a8dea916af70",
-					"name": "Sunday Sqool Comedy",
-					"date": "Sun, Dec 11",
-					"time": "7:45 PM",
-					"address": "Sour Mouse • New York, NY",
-					"price": "Starts at $12.24",
-					"category": "Arts",
-					"description": "The most diverse, talented comedians in NYC come together at this show, and it's topped off w/ an afterparty."
-				},
-				{
-					"img": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F404522969%2F116012978731%2F1%2Foriginal.20221204-194748?w=512&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C377%2C1200%2C600&s=4e1f154b8ec373f9d264a62ae9625616",
-					"name": "Black Health Connect: NYC - Q4 Mixer + Toy Drive",
-					"date": "Fri, Dec 16",
-					"time": "5:00 PM",
-					"address": "Harbor NYC Rooftop • New York, NY",
-					"price": "RSVP and a Toy are required for free entry",
-					"category": "Health",
-					"description": "COMING TOGETHER TODAY, FOR A MORE SUCCESSFUL TOMORROW."
-				},
-				{
-					"img": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F402169529%2F66299487319%2F1%2Foriginal.20221130-054645?w=512&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C13%2C1024%2C512&s=19af6eab00379e0e931c8436fffeb1ed",
-					"name": "Ladies Drink For Free NYC #1 Party Lux Saturdays At Cavali NYC",
-					"date": "Sat, Dec 10",
-					"time": "11:00 PM",
-					"address": "Cavali New York • Queens, NY",
-					"price": "Ladies Free Before Midnight W/RSVP - Men Free Before 11:30PM W/RSVP",
-					"category": "Food",
-					"description": "NYC #1 Celebrity Party , Never know who will show up at Lux Saturdays"
-				},
-				{
-					"img": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F344608609%2F254534975312%2F1%2Foriginal.20220830-123450?w=940&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C1305%2C3300%2C1650&s=cd3384368f839b390e1487e04317c211",
-					"name": "Oddities Flea Market New York City",
-					"date": "Sat, Dec 10",
-					"time": "11:00 AM",
-					"address": "Metropolitan Pavilion • New York, NY",
-					"price": "Starts at $22.85",
-					"category": "Entertainment",
-					"description": "Oddities Flea Market is thrilled to welcome you to the Metropolitan Pavilion in Manhattan this winter!"
-				},
-				{
-					"img": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F368715519%2F471091208451%2F1%2Foriginal.20220909-131911?w=940&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C16%2C1080%2C540&s=7c8916fd6004581e4d1d4fa07877708a",
-					"name": "n00b york city",
-					"date": "Tue, Dec 13",
-					"time": "8:00 PM",
-					"address": "BrookLAN • Brooklyn, NY",
-					"price": "Free",
-					"category": "Entertainment",
-					"description": "Where top comedians and seasoned gamers collide!"
-				},
-				{
-					"img": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F129222591%2F197361445633%2F1%2Foriginal.20210316-120602?w=940&auto=format%2Ccompress&q=75&sharp=10&rect=173%2C0%2C2160%2C1080&s=8aa946aeb0dfa8e69ddab124b14fcced",
-					"name": "New York Tech Career Fair: Exclusive Tech Hiring Event",
-					"date": "Fri, Dec 16",
-					"time": "12:00 PM",
-					"address": "Moved to Virtual Event • New York, NY",
-					"price": "Free",
-					"category": "Attraction",
-					"description": "Tech Career Fair focus on helping companies achieve their diversity and inclusivity initiative with more diverse non-traditional candidates"
-				},
-				{
-					"img": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F397453229%2F155520257281%2F1%2Foriginal.20221121-175844?w=512&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C0%2C1350%2C675&s=322f669e90f2c64e1443751800297d10",
-					"name": "Gala Galactica: New Year's Eve",
-					"date": "Sat, Dec 31",
-					"time": "10:00 PM",
-					"address": "House of Yes • Brooklyn, NY",
-					"price": "Starts at $69.38",
-					"category": "Music",
-					"description": "House of Yes presents Gala Galactica: New Year's Eve #happyholidays #nye"
-				},
-				{
-					"img": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F382548449%2F9011001541%2F1%2Foriginal.20221028-233528?w=940&auto=format%2Ccompress&q=75&sharp=10&rect=8%2C392%2C1072%2C536&s=bfafa72203be0d0d2d29e5b17d4f5267",
-					"name": "Mixed Media Street Art Exhibition #2 - NYC",
-					"date": "Today",
-					"time": "6:00 PM",
-					"address": "Hudson Yards Gallery • New York, NY",
-					"price": "Free",
-					"category": "Arts",
-					"description": "Bringing NYC street artists together, a second time, for a 4-day showing of incredible mixed media art."
-				},
-				{
-					"img": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F397799929%2F808659416043%2F1%2Foriginal.20221122-030325?w=940&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C0%2C1600%2C800&s=95f890b035e29f0cf93e08c3ac64f4d2",
-					"name": "AFL Muay Thai-GAME CHANGER",
-					"date": "Tomorrow",
-					"time": "6:00 PM",
-					"address": "The Post BK • Brooklyn, NY",
-					"price": "Starts at $54.98",
-					"category": "Fitness",
-					"description": "Come join us as we take our show to Brooklyn"
-				},
-				{
-					"img": "/img/logo.png",
-					"name": "10",
-					"date": "10",
-					"time": "10",
-					"address": "10",
-					"price": "10",
-					"category": "Music",
-					"description": "10"
-				},
-				{
-					"img": "/img/logo.png",
-					"name": "11",
-					"date": "11",
-					"time": "11",
-					"address": "11",
-					"price": "11",
-					"category": "Music",
-					"description": "11"
-				},
-				{
-					"img": "/img/event1.png",
-					"name": "12",
-					"date": "12",
-					"time": "12",
-					"address": "12",
-					"price": "12",
-					"category": "Music",
-					"description": "12"
-				},
-				{
-					"img": "/img/event1.png",
-					"name": "12",
-					"date": "12",
-					"time": "12",
-					"address": "12",
-					"price": "12",
-					"category": "Food",
-					"description": "12"
-				},
-				{
-					"img": "/img/event1.png",
-					"name": "13",
-					"date": "13",
-					"time": "13",
-					"address": "13",
-					"price": "13",
-					"category": "Food",
-					"description": "13"
-				},
-				{
-					"img": "/img/event2.png",
-					"name": "14",
-					"date": "14",
-					"time": "14",
-					"address": "14",
-					"price": "14",
-					"category": "Health",
-					"description": "14"
-				},
-				{
-					"img": "/img/event2.png",
-					"name": "15",
-					"date": "15",
-					"time": "15",
-					"address": "15",
-					"price": "15",
-					"category": "Attraction",
-					"description": "15"
-				},
-				{
-					"img": "/img/event2.png",
-					"name": "16",
-					"date": "16",
-					"time": "16",
-					"address": "16",
-					"price": "16",
-					"category": "Attraction",
-					"description": "16"
-				},
-				{
-					"img": "/img/event3.png",
-					"name": "17",
-					"date": "17",
-					"time": "17",
-					"address": "17",
-					"price": "17",
-					"category": "Travel",
-					"description": "17"
-				},
-				{
-					"img": "/img/event3.png",
-					"name": "18",
-					"date": "18",
-					"time": "18",
-					"address": "18",
-					"price": "18",
-					"category": "Travel",
-					"description": "18"
-				},
-				{
-					"img": "/img/event3.png",
-					"name": "19",
-					"date": "19",
-					"time": "19",
-					"address": "19",
-					"price": "19",
-					"category": "Travel",
-					"description": "19"
-				},
-				{
-					"img": "/img/logo.png",
-					"name": "20",
-					"date": "20",
-					"time": "20",
-					"address": "20",
-					"price": "20",
-					"category": "Health",
-					"description": "20"
-				},
-				{
-					"img": "/img/logo.png",
-					"name": "21",
-					"date": "21",
-					"time": "21",
-					"address": "21",
-					"price": "21",
-					"category": "Entertainment",
-					"description": "21"
-				},
-				{
-					"img": "/img/logo.png",
-					"name": "22",
-					"date": "22",
-					"time": "22",
-					"address": "22",
-					"price": "22",
-					"category": "Health",
-					"description": "22"
-				},
-				{
-					"img": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F298786339%2F226667758798%2F1%2Foriginal.20220607-172215?w=512&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C217%2C636%2C318&s=be6b400740a1d2beacc2bd5fa92cfea2",
-					"name": "New Year's Eve 2023 @230 Fifth Rooftop",
-					"date": "Sat, Dec 31",
-					"time": "8:00 PM",
-					"address": "230 5th Ave • New York, NY",
-					"price": "Starts at $193.30",
-					"category": "Music ",
-					"description": "Celebrate New Year's Eve at NYC's largest indoor & outdoor bar! Join us for our annual New Year's Eve Extravaganza!"
-				},
-				{
-					"img": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F144930473%2F51234595122%2F1%2Foriginal.20210818-185920?w=512&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C198%2C2100%2C1050&s=34639f44e515c9b00764a8dea916af70",
-					"name": "Sunday Sqool Comedy",
-					"date": "Sun, Dec 11",
-					"time": "7:45 PM",
-					"address": "Sour Mouse • New York, NY",
-					"price": "Starts at $12.24",
-					"category": "Arts",
-					"description": "The most diverse, talented comedians in NYC come together at this show, and it's topped off w/ an afterparty."
-				},
-				{
-					"img": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F404522969%2F116012978731%2F1%2Foriginal.20221204-194748?w=512&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C377%2C1200%2C600&s=4e1f154b8ec373f9d264a62ae9625616",
-					"name": "Black Health Connect: NYC - Q4 Mixer + Toy Drive",
-					"date": "Fri, Dec 16",
-					"time": "5:00 PM",
-					"address": "Harbor NYC Rooftop • New York, NY",
-					"price": "RSVP and a Toy are required for free entry",
-					"category": "Health",
-					"description": "COMING TOGETHER TODAY, FOR A MORE SUCCESSFUL TOMORROW."
-				},
-				{
-					"img": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F402169529%2F66299487319%2F1%2Foriginal.20221130-054645?w=512&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C13%2C1024%2C512&s=19af6eab00379e0e931c8436fffeb1ed",
-					"name": "Ladies Drink For Free NYC #1 Party Lux Saturdays At Cavali NYC",
-					"date": "Sat, Dec 10",
-					"time": "11:00 PM",
-					"address": "Cavali New York • Queens, NY",
-					"price": "Ladies Free Before Midnight W/RSVP - Men Free Before 11:30PM W/RSVP",
-					"category": "Food",
-					"description": "NYC #1 Celebrity Party , Never know who will show up at Lux Saturdays"
-				},
-				{
-					"img": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F344608609%2F254534975312%2F1%2Foriginal.20220830-123450?w=940&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C1305%2C3300%2C1650&s=cd3384368f839b390e1487e04317c211",
-					"name": "Oddities Flea Market New York City",
-					"date": "Sat, Dec 10",
-					"time": "11:00 AM",
-					"address": "Metropolitan Pavilion • New York, NY",
-					"price": "Starts at $22.85",
-					"category": "Entertainment",
-					"description": "Oddities Flea Market is thrilled to welcome you to the Metropolitan Pavilion in Manhattan this winter!"
-				},
-				{
-					"img": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F368715519%2F471091208451%2F1%2Foriginal.20220909-131911?w=940&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C16%2C1080%2C540&s=7c8916fd6004581e4d1d4fa07877708a",
-					"name": "n00b york city",
-					"date": "Tue, Dec 13",
-					"time": "8:00 PM",
-					"address": "BrookLAN • Brooklyn, NY",
-					"price": "Free",
-					"category": "Entertainment",
-					"description": "Where top comedians and seasoned gamers collide!"
-				},
-				{
-					"img": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F129222591%2F197361445633%2F1%2Foriginal.20210316-120602?w=940&auto=format%2Ccompress&q=75&sharp=10&rect=173%2C0%2C2160%2C1080&s=8aa946aeb0dfa8e69ddab124b14fcced",
-					"name": "New York Tech Career Fair: Exclusive Tech Hiring Event",
-					"date": "Fri, Dec 16",
-					"time": "12:00 PM",
-					"address": "Moved to Virtual Event • New York, NY",
-					"price": "Free",
-					"category": "Health",
-					"description": "Tech Career Fair focus on helping companies achieve their diversity and inclusivity initiative with more diverse non-traditional candidates"
-				},
-				{
-					"img": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F397453229%2F155520257281%2F1%2Foriginal.20221121-175844?w=512&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C0%2C1350%2C675&s=322f669e90f2c64e1443751800297d10",
-					"name": "Gala Galactica: New Year's Eve",
-					"date": "Sat, Dec 31",
-					"time": "10:00 PM",
-					"address": "House of Yes • Brooklyn, NY",
-					"price": "Starts at $69.38",
-					"category": "Music",
-					"description": "House of Yes presents Gala Galactica: New Year's Eve #happyholidays #nye"
-				},
-				{
-					"img": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F382548449%2F9011001541%2F1%2Foriginal.20221028-233528?w=940&auto=format%2Ccompress&q=75&sharp=10&rect=8%2C392%2C1072%2C536&s=bfafa72203be0d0d2d29e5b17d4f5267",
-					"name": "Mixed Media Street Art Exhibition #2 - NYC",
-					"date": "Today",
-					"time": "6:00 PM",
-					"address": "Hudson Yards Gallery • New York, NY",
-					"price": "Free",
-					"category": "Arts",
-					"description": "Bringing NYC street artists together, a second time, for a 4-day showing of incredible mixed media art."
-				},
-				{
-					"img": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F397799929%2F808659416043%2F1%2Foriginal.20221122-030325?w=940&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C0%2C1600%2C800&s=95f890b035e29f0cf93e08c3ac64f4d2",
-					"name": "AFL Muay Thai-GAME CHANGER",
-					"date": "Tomorrow",
-					"time": "6:00 PM",
-					"address": "The Post BK • Brooklyn, NY",
-					"price": "Starts at $54.98",
-					"category": "Health",
-					"description": "Come join us as we take our show to Brooklyn"
-				},
-				{
-					"img": "/img/logo.png",
-					"name": "10",
-					"date": "10",
-					"time": "10",
-					"address": "10",
-					"price": "10",
-					"category": "Healh",
-					"description": "10"
-				},
-				{
-					"img": "/img/logo.png",
-					"name": "11",
-					"date": "11",
-					"time": "11",
-					"address": "Health",
-					"price": "11",
-					"category": "Attraction",
-					"description": "11"
-				},
-				{
-					"img": "/img/event1.png",
-					"name": "12",
-					"date": "12",
-					"time": "12",
-					"address": "12",
-					"price": "12",
-					"category": "Music",
-					"description": "12"
-				},
-				{
-					"img": "/img/event1.png",
-					"name": "12",
-					"date": "12",
-					"time": "12",
-					"address": "12",
-					"price": "12",
-					"category": "Entertainment",
-					"description": "12"
-				},
-				{
-					"img": "/img/event1.png",
-					"name": "13",
-					"date": "13",
-					"time": "13",
-					"address": "13",
-					"price": "13",
-					"category": "Entertainment",
-					"description": "13"
-				},
-				{
-					"img": "/img/event2.png",
-					"name": "14",
-					"date": "14",
-					"time": "14",
-					"address": "14",
-					"price": "14",
-					"category": "Entertainment",
-					"description": "14"
-				},
-				{
-					"img": "/img/event2.png",
-					"name": "15",
-					"date": "15",
-					"time": "15",
-					"address": "15",
-					"price": "15",
-					"category": "Attraction",
-					"description": "15"
-				},
-				{
-					"img": "/img/event2.png",
-					"name": "16",
-					"date": "16",
-					"time": "16",
-					"address": "16",
-					"price": "16",
-					"category": "Music",
-					"description": "16"
-				},
-				{
-					"img": "/img/event3.png",
-					"name": "17",
-					"date": "17",
-					"time": "17",
-					"address": "17",
-					"price": "17",
-					"category": "Health",
-					"description": "17"
-				},
-				{
-					"img": "/img/event3.png",
-					"name": "18",
-					"date": "18",
-					"time": "18",
-					"address": "18",
-					"price": "18",
-					"category": "Food",
-					"description": "18"
-				},
-				{
-					"img": "/img/event3.png",
-					"name": "19",
-					"date": "19",
-					"time": "19",
-					"address": "19",
-					"price": "19",
-					"category": "Food",
-					"description": "19"
-				},
-				{
-					"img": "/img/logo.png",
-					"name": "20",
-					"date": "20",
-					"time": "20",
-					"address": "20",
-					"price": "20",
-					"category": "Music",
-					"description": "20"
-				},
-				{
-					"img": "/img/logo.png",
-					"name": "21",
-					"date": "21",
-					"time": "21",
-					"address": "21",
-					"price": "21",
-					"category": "",
-					"description": "21"
-				},
-				{
-					"img": "/img/logo.png",
-					"name": "22",
-					"date": "22",
-					"time": "22",
-					"address": "22",
-					"price": "22",
-					"category": "22",
-					"description": "22"
-				}
-			]
-		}
+		
+
 /*******Trending Section*******/
 		var eventSlide = [],	//creates an array of empty slides
 		cards = "", 			//html of cards to add to each slide
@@ -682,11 +193,11 @@
 					"<div class='info'>" +
 							"<span>" +
 							"<h4>" + eventData.events[j+(3*i)].name + "</h4>" +
-							"<h5>" + eventData.events[j+(3*i)].date + ", " + eventData.events[j+(3*i)].time + "</h5>" +
+							"<h5>" + eventData.events[j+(3*i)].date +
 							"<h5>" + eventData.events[j+(3*i)].address + "</h5>" +
 							"<h5>" + eventData.events[j+(3*i)].category + "</h5>" +
 							"<h5>" + eventData.events[j+(3*i)].price + "</h5>" +
-							"<p>" + eventData.events[j+(3*i)].description + "</p>" +
+							"<a href="+eventData.events[j+(3*i)].url+"> Learn More</a>"  +
 							"</span>" +
 						"</div>" +
 						"<div class='btnbox'>" +
@@ -778,8 +289,8 @@
 					eventTabs += 
 						"<div class='event' onclick='loadinfo(" + matchedEvents[(j + (i * maxNumEventTabs))] + ")'>" + 
 							((j + (i * maxNumEventTabs))+ 1) + ". " + eventData.events[matchedEvents[(j + (i * maxNumEventTabs))]].name + " " +
-							eventData.events[matchedEvents[(j + (i * maxNumEventTabs))]].date + " " +
-							eventData.events[matchedEvents[(j + (i * maxNumEventTabs))]].time + 
+							eventData.events[matchedEvents[(j + (i * maxNumEventTabs))]].date +
+							
 						"</div>"
 				}
 				pages[i] = eventTabs	//HTML of event tabs added to current page
@@ -803,11 +314,11 @@
 						"<div class='info'>" +
 							"<span>" +
 							"<h4>" + eventData.events[index].name + "</h4>" +
-							"<h5>" + eventData.events[index].date + ", " + eventData.events[index].time + "</h5>" +
+							"<h5>" + eventData.events[index].date + "</h5>" +
 							"<h5>" + eventData.events[index].address + "</h5>" +
 							"<h5>" + eventData.events[index].category + "</h5>" +
 							"<h5>" + eventData.events[index].price + "</h5>" +
-							"<p>" + eventData.events[index].description + "</p>" +
+							"<a href="+eventData.events[index].url+"> Learn More</a>"  +
 							"</span>" +
 						"</div>" +
 						"<div class='btnbox'>" +
