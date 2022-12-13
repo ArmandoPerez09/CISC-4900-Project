@@ -240,6 +240,8 @@ body{
 }
 .front-page .vertical-menu img{
 	margin: 1rem;
+	height: 25%;
+	border-radius: 5px;
 }
 .front-page .vertical-menu h3{
 	margin: 0.3rem;

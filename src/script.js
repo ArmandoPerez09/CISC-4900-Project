@@ -57,12 +57,21 @@ function getMusic() {
         for (var i = 0; i < results.length; i++) {
 
           
-          var place = results[i];
-         
-          let content = `<h3>${place.name}</h3>
-          <h4>${place.vicinity}</h4>
-          
-          Rating: ${place.rating}<br/>`;
+            var place = results[i];
+            let markerPhotos = place.photos;
+            let markerImg = document.createElement('img');
+            if(markerPhotos != "" && markerPhotos != null){
+                markerImg.src = markerPhotos[0].getUrl({maxWidth: 99, maxHeight: 99});
+            }else{
+                markerImg.src = "/img/no-image.png";
+            }
+  
+           
+            let content = `<h3>${place.name}</h3>
+            <img style="border-radius: 10px;"src="${markerImg.src}">
+            <h4>${place.vicinity}</h4>
+            
+            Rating: ${place.rating}<br/>`;
           
 
           var marker = new google.maps.Marker({
@@ -180,13 +189,21 @@ function getArt() {
         for (var i = 0; i < results.length; i++) {
 
           
-          var place = results[i];
-         
-          let content = `<h3>${place.name}</h3>
-          <h4>${place.vicinity}</h4>
-          
-          Rating: ${place.rating}<br/>`;
-          
+            var place = results[i];
+            let markerPhotos = place.photos;
+            let markerImg = document.createElement('img');
+            if(markerPhotos != "" && markerPhotos != null){
+                markerImg.src = markerPhotos[0].getUrl({maxWidth: 99, maxHeight: 99});
+            }else{
+                markerImg.src = "/img/no-image.png";
+            }
+  
+           
+            let content = `<h3>${place.name}</h3>
+            <img style="border-radius: 10px;"src="${markerImg.src}">
+            <h4>${place.vicinity}</h4>
+            
+            Rating: ${place.rating}<br/>`;
 
           var marker = new google.maps.Marker({
             title: place.name,
@@ -298,14 +315,21 @@ function getOutdoor() {
         for (var i = 0; i < results.length; i++) {
 
           
-          var place = results[i];
-         
-          let content = `<h3>${place.name}</h3>
-          <h4>${place.vicinity}</h4>
-          
-          Rating: ${place.rating}<br/>`;
-          
-
+            var place = results[i];
+            let markerPhotos = place.photos;
+            let markerImg = document.createElement('img');
+            if(markerPhotos != "" && markerPhotos != null){
+                markerImg.src = markerPhotos[0].getUrl({maxWidth: 99, maxHeight: 99});
+            }else{
+                markerImg.src = "/img/no-image.png";
+            }
+  
+           
+            let content = `<h3>${place.name}</h3>
+            <img style="border-radius: 10px;"src="${markerImg.src}">
+            <h4>${place.vicinity}</h4>
+            
+            Rating: ${place.rating}<br/>`;
           var marker = new google.maps.Marker({
             title: place.name,
             map : map,
@@ -439,15 +463,23 @@ function getRestaurant() {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
 
-          
+         
           var place = results[i];
+          let markerPhotos = place.photos;
+          let markerImg = document.createElement('img');
+          if(markerPhotos != "" && markerPhotos != null){
+              markerImg.src = markerPhotos[0].getUrl({maxWidth: 99, maxHeight: 99});
+          }else{
+              markerImg.src = "/img/no-image.png";
+          }
+
           let price = createPrice(place.price_level);
           let content = `<h3>${place.name}</h3>
+          <img style="border-radius: 10px;"src="${markerImg.src}">
           <h4>${place.vicinity}</h4>
           <p>Price: ${price}<br/>
           Rating: ${place.rating}<br/>`;
-          
-
+       
           var marker = new google.maps.Marker({
             title: place.name,
             map : map,
@@ -470,11 +502,11 @@ function getRestaurant() {
             let itemL = document.createElement('p');
             if(photos != "" && photos != null){
                 img.src = photos[0].getUrl({maxWidth: 99, maxHeight: 99});
-               }else{
-                   img.src = "/img/no-image.png";
-               }
+            }else{
+                img.src = "/img/no-image.png";
+            }
             
-
+            let price = createPrice(place.price_level);
             let itemPText = document.createTextNode(`${place.name}: $${price}`);
             
             
@@ -578,13 +610,21 @@ function getExercise() {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
 
-          
-          var place = results[i];
-         
-          let content = `<h3>${place.name}</h3>
-          <h4>${place.vicinity}</h4>
-          
-          Rating: ${place.rating}<br/>`;
+            var place = results[i];
+            let markerPhotos = place.photos;
+            let markerImg = document.createElement('img');
+            if(markerPhotos != "" && markerPhotos != null){
+                markerImg.src = markerPhotos[0].getUrl({maxWidth: 99, maxHeight: 99});
+            }else{
+                markerImg.src = "/img/no-image.png";
+            }
+  
+           
+            let content = `<h3>${place.name}</h3>
+            <img style="border-radius: 10px;"src="${markerImg.src}">
+            <h4>${place.vicinity}</h4>
+            
+            Rating: ${place.rating}<br/>`;
           
 
           var marker = new google.maps.Marker({
@@ -711,13 +751,21 @@ function getEntertainment() {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
 
-          
-          var place = results[i];
-         
-          let content = `<h3>${place.name}</h3>
-          <h4>${place.vicinity}</h4>
-          
-          Rating: ${place.rating}<br/>`;
+            var place = results[i];
+            let markerPhotos = place.photos;
+            let markerImg = document.createElement('img');
+            if(markerPhotos != "" && markerPhotos != null){
+                markerImg.src = markerPhotos[0].getUrl({maxWidth: 99, maxHeight: 99});
+            }else{
+                markerImg.src = "/img/no-image.png";
+            }
+  
+           
+            let content = `<h3>${place.name}</h3>
+            <img style="border-radius: 10px;"src="${markerImg.src}">
+            <h4>${place.vicinity}</h4>
+            
+            Rating: ${place.rating}<br/>`;
           
 
           var marker = new google.maps.Marker({
@@ -844,12 +892,21 @@ function getFun() {
         for (var i = 0; i < results.length; i++) {
 
           
-          var place = results[i];
-         
-          let content = `<h3>${place.name}</h3>
-          <h4>${place.vicinity}</h4>
-          
-          Rating: ${place.rating}<br/>`;
+            var place = results[i];
+            let markerPhotos = place.photos;
+            let markerImg = document.createElement('img');
+            if(markerPhotos != "" && markerPhotos != null){
+                markerImg.src = markerPhotos[0].getUrl({maxWidth: 99, maxHeight: 99});
+            }else{
+                markerImg.src = "/img/no-image.png";
+            }
+  
+           
+            let content = `<h3>${place.name}</h3>
+            <img style="border-radius: 10px;"src="${markerImg.src}">
+            <h4>${place.vicinity}</h4>
+            
+            Rating: ${place.rating}<br/>`;
           
 
           var marker = new google.maps.Marker({
