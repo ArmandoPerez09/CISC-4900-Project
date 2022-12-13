@@ -7,9 +7,13 @@
 ## Final Draft
 ## Contact:
 (Supervisor) Anshul Nimje: animje@etsy.com
+
 Armando Perez: armando123perez@gmail.com
+
 Bhel Charles: bhelhalensc@gmail.com 
+
 Devin Lin: devin1299@outlook.com
+
 Fazle Rabbi: Fazle.Rabbi67@bcmail.cuny.edu 
 
 ## Github Link:
