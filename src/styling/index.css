@@ -40,9 +40,10 @@ iframe{
 	font-family: 'Open Sans', sans-serif;
 	text-align: center;
 	padding-top: 40%;
-	padding-bottom: 40%;
+	padding-bottom: 72%;
 	background-color: rgb(252, 172, 172);
 	color: white;
+	border-radius: 10px;
 }
 @media screen and (max-width: 1400px) {
 	.front-page .vertical-menu {
