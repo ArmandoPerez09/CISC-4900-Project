@@ -1,7 +1,7 @@
 # NYC Checklist Website📍
-## Members: Armando Perez, Bhel Charles, Devin Lin, Fazle Rabbi
-## Supervisor: Anshul Nimje
-## CISC 4900 Fall 2022
+ Members: Armando Perez, Bhel Charles, Devin Lin, Fazle Rabbi
+ Supervisor: Anshul Nimje
+ CISC 4900 Fall 2022
 
 
 ## Final Draft
