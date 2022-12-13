@@ -19,7 +19,7 @@ Many people struggle to find places to go out, places to eat, and find the "top 
 ## Objective:
 Besides all the famous places like the Statue of Liberty and Broadway, it can be difficult to find what you're looking for. Our website can assist both tourists and locals to find the perfect activities.
 
-## Example: Your friends from Canada visit you for the summer, and you want to take them out to a fun place in NYC. However, they have already visited all the well-known locations, including Broadway, Times Square, and the Statue of Liberty. When you search for "top things to do in New York City," they all direct you to the same crowded tourist spots, despite the fact that you want to take them somewhere new. Our website will show unique places that allow the user to easily pick activities to do.
+` Example: Your friends from Canada visit you for the summer, and you want to take them out to a fun place in NYC. However, they have already visited all the well-known locations, including Broadway, Times Square, and the Statue of Liberty. When you search for "top things to do in New York City," they all direct you to the same crowded tourist spots, despite the fact that you want to take them somewhere new. Our website will show unique places that allow the user to easily pick activities to do.`
 
 Meetings weekly:
 Mondays 9:00 pm-11:00PM
