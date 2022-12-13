@@ -260,7 +260,7 @@
 	height: 80%;
 	margin-left: 5%;
 	margin-right: 5%;
-	display: flex;
+	display: table-row;
 	justify-content: center;
 	align-items: center;
 	flex-wrap: wrap;
@@ -277,8 +277,7 @@
 	align-items: center;
 	flex-wrap: wrap;
 	background-color: rgb(181, 34, 12, 0.5);
-	margin-top: 0.5%;
-	margin-bottom: 0.5%;
+	margin: 0.5% 10px;
 	overflow: hidden;
 }
 

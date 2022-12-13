@@ -65,12 +65,12 @@
 
 			<!--Table Section-->
 			<div class="container">
-				<div class="centerbox">
+				<!--div class="centerbox">
 					<button class="btn">For You</button>
 					<button class="btn">All Events</button>
 					<button class="btn">Discover</button>
 				</div>
-				<div class="centerbox"><input id="searchInput" class="search" type="text" placeholder="Search Events"></div>
+				<div class="centerbox"><input id="searchInput" class="search" type="text" placeholder="Search Events"></div-->
 				
 				<div class="section" style="border-radius: 20px 0px 0px 20px;">
 					<div class="contentbox">						
@@ -102,10 +102,11 @@
 							<input type="checkbox" onclick="togglePricing('Special')"></span>
 						</div>
 						
-						<div class="header"><h4>Date</h4></div>
+						<!--Date Filter-->
+						<!--div class="header"><h4>Date</h4></div>
 						<div class="optionbox2">
 							<input type="date" id="date" name="start" value="2022-12-09">
-						</div>
+						</div-->
 						
 					</div>
 				</div>
@@ -116,7 +117,7 @@
 						<!--Displays Number of events matched-->
 						<div id="eventNum" class="header"><h4>Event List</h4></div>		
 						<!--Displays all events stored in current page-->
-						<div id="events" class="eventlist">No Events Found</div>
+						<div id="events" class="eventlist">No Events Found. Broaden Your Search Or Try Again Later</div>
 						<!--Page Control-->
 						<div class="eventpagerbox">
 							<button class="pagerbtn" onclick="changePage(-1)"><h2>Prev</h2></i></button>
@@ -132,7 +133,7 @@
 						<div class="imgbox"><img class="img" src="/img/logo.png"></div>
 						<div class="infobox">
 							<!--Default Message when no events are found-->
-							<div class="info"><h4>No Events Found, Broaden Your Search Or Try Again Later</h4></div>
+							<div class="info"><h4>No Events Found</h4></div>
 						</div>
 					</div>
 				</div>
@@ -142,49 +143,22 @@
 	</div>
 	<script src="../script.js"></script>
 	<script src="https://kit.fontawesome.com/2ff391b354.js" crossorigin="anonymous"></script>
-	
 	<script src="../data/theUltimateFile.js"></script>
+	<script src="../scripts/trending.js"></script>
 	<script>
 
 /*******Mock Data: Generic*******/
 		
 
 /*******Trending Section*******/
-		var eventSlide = [],	//creates an array of empty slides
-		cards = "", 			//html of cards to add to each slide
-		currentSlide = 0, 		//Used to navigate through slides
-		maxNumSlides = 3,		//Max number of slides to be displayed
-		maxNumCards = 3		//
-
-		/*
-		var numTopEvents = 8, maxSlides = 3, numSlides
-		if(eventData.events.length == 0){
-			cards ="<h2 style='color: brown'>No Events Found. Try Again</h2>"
-			document.getElementById("cards").innerHTML = eventSlide
-		}else{	
-			generateTopEvents()	//create an array of events with max num 9
-			numTopEvents = topEvents.length
-			if(numTopEvents % maxSlides == 0)
-				numSlides = numTopEvents/maxSlides
-			else
-				numSlides = (numTopEvents/maxSlides) + 1
-			for (let i = 0; i < numSlides; i++){	//creates three slides, each with three cards
-				cards = ""	//reset cards
-				if(numTopEvents - (3 * i) >= 3){
-					cardNum = 3
-				}		
-				else{
-					cardNum = numTopEvents - (3 * i)
-				}
-				for (let j = 0; j < cardNum; j++){
-					cards = make card 
-				}
-				eventSlide[i] = cards
-			}
-		*/
+		var eventSlide = [],				//creates an array of empty slides
+		cards = "", 						//html of cards to add to each slide
+		currentSlide = 0, 					//Used to navigate through slides
+		maxNumSlides = 3,					//Max number of slides to be displayed
+		maxNumCards = 3						//Max number of cards per slide
 
 		for (let i = 0; i < maxNumSlides; i++){	//creates slides based on maxNumSlides
-			cards = ""	//reset cards
+			cards = ""						//reset cards
 			for (let j = 0; j < maxNumCards; j++){	//Creates Cards depending on maxNumCards
 				cards += 					//use the eventData index to generate cards
 				"<div class='card'>" +
@@ -197,26 +171,26 @@
 							"<h5>" + eventData.events[j+(3*i)].address + "</h5>" +
 							"<h5>" + eventData.events[j+(3*i)].category + "</h5>" +
 							"<h5>" + eventData.events[j+(3*i)].price + "</h5>" +
-							"<a href="+eventData.events[j+(3*i)].url+"> Learn More</a>"  +
+							""  +
 							"</span>" +
 						"</div>" +
 						"<div class='btnbox'>" +
-							"<button class='btn'><i class='fa-regular fa-star fa-lg'></i></button>" +
-							"<button class='btn'><i class='fa-regular fa-rectangle-list fa-lg'></i></i></button>" +
-							"<button class='btn'><i class='fa-solid fa-map fa-lg'></i></button>" +
+							"<button class='btn'>" +
+								"<a href=" + eventData.events[j+(3*i)].url + ">" +
+								"<div>Read More</div>" +
+								"<i class='fa-regular fa-rectangle-list fa-lg'></i></a>" + 
+							"</button>" +
 						"</div>" +
 					"</div>" +
 				"</div>"
 			}
-			eventSlide[i] = cards	//adds all cards to currernt index of eventSlide
+			eventSlide[i] = cards			//adds all cards to currernt index of eventSlide
 		}
 
 		document.getElementById("cards").innerHTML = eventSlide[currentSlide]	//on start up
-		var dots = document.getElementsByClassName("dot");	//Array holding all elements with "dot class
+		var dots = document.getElementsByClassName("dot")	//Array holding all elements with "dot class
 		
-
-
-		function changeSlide(iter){	//navigates through slides
+		function changeSlide(iter){			//navigates through slides
 			if(currentSlide + iter < 0)	//if currentSlide goes under the number of slides, reset at last slide
 				currentSlide = eventSlide.length - 1
 			else if(currentSlide + iter > eventSlide.length - 1)	//if currentSlide exceeds the number of slides, reset at start
@@ -231,8 +205,7 @@
 			dots[currentSlide].className += " active";	//replaces the class currentSlide dot with active
 		}
 
-
-		function activeButton(selectedSlide){			//Displays which dot is currently active
+		function activeButton(selectedSlide){	//Displays which dot is currently active
 			document.getElementById("cards").innerHTML = eventSlide[selectedSlide]
 			for (i = 0; i < dots.length; i++) {	//Resets all dots
    				dots[i].className = dots[i].className.replace(" active", "");
@@ -240,186 +213,199 @@
 			dots[selectedSlide].className += " active";	//replaces the class currentSlide dot with active
 		}
 
-/*******Table Section Script*******/
-		var eventTabs = "", 	//holds html of events
-		maxNumEventTabs = 10, 	//Max number of events per page
-		pages = [], 			//array of pages
-		pageNum = 0, 			//Holds the number of pages to be created
-		eventNum, 				//Used to create last page with remaining events
-		matchedEvents = [], 	//Array of indexes with matched Events
-		numMatchedEvents = eventData.events.length,	//numMatchedEvents holds the number of all events in eventData in the beginning, updated with filters
-		currentPage = 0, 		//Used to navigate between pages
-		currentEvent = 0		//Used to navigate between displayed events
-		categs = []				//Array of currently selected categories
-		pricing = []			//Array of currently selected pricings
-		date = []				//Array of current;y selected dates
 
-
-		function filterEvents(){
-			allEvents()					//Resets matchedEvents to all events
-			if(categs.length != 0)		//If categs is not empty, filter events via categories
-				filterCateg(categs)		
-			if(pricing.length != 0)		//If pricing is not empty, filter events via pricing
-				filterPricing(pricing)
-			if(date.length != 0)		//If date is not empty, filter events via date
-				filterDate(date)
-			createPages()				
-			document.getElementById("eventNum").innerHTML = "<h4>" + numMatchedEvents +
-															" events matched" + "</h4>"		//Displays number of events matched
-			document.getElementById("events").innerHTML = pages[currentPage]				//Displays the current page
-			loadinfo(currentEvent)		//loads first event page on start up
-		}
-
-		function createPages(){			//Creates and populates pages with matched events
-			pages = []
-			if(numMatchedEvents % maxNumEventTabs == 0)				//Determines if an extra page is need for remaining events
-				pageNum = numMatchedEvents/maxNumEventTabs
-			else
-				pageNum = (numMatchedEvents/maxNumEventTabs) + 1	//Creates extra page for excess events
-
-			for (let i = 0; i < pageNum; i++){					//Populates current page iteration
-				eventTabs = ""
-				if(numMatchedEvents - (maxNumEventTabs * i) >= maxNumEventTabs){	//Number of events to be added to page
-					eventNum = maxNumEventTabs
-				}		
-				else{
-					eventNum = numMatchedEvents - (maxNumEventTabs * i)		//If the remaining number of events is less than maxNumEventTabs, only create the remainig event tabs
-				}
-				for(let j = 0; j < eventNum; j++){		//Creates html of event tabs
-					eventTabs += 
-						"<div class='event' onclick='loadinfo(" + matchedEvents[(j + (i * maxNumEventTabs))] + ")'>" + 
-							((j + (i * maxNumEventTabs))+ 1) + ". " + eventData.events[matchedEvents[(j + (i * maxNumEventTabs))]].name + " " +
-							eventData.events[matchedEvents[(j + (i * maxNumEventTabs))]].date +
-							
-						"</div>"
-				}
-				pages[i] = eventTabs	//HTML of event tabs added to current page
-				if(pages[i] == ""){		//Prevent Empty pages from being displayed
-					pages.pop()
-					pageNum--
-				}					
-			}
-			currentPage = 0		//Loads the first event of page onto the info section
-		}
-
-		filterEvents()
 		
-		function loadinfo(index){	//Loads information of event at index onto the info section of the table
-			info = 
-				"<div class='header'><h4>Information</h4></div>" +
-					"<div class='imgbox'>" +
-						"<img class='img' src=" + eventData.events[index].img + ">" +
-					"</div>" +
-					"<div class='infobox'>" +
-						"<div class='info'>" +
-							"<span>" +
-							"<h4>" + eventData.events[index].name + "</h4>" +
-							"<h5>" + eventData.events[index].date + "</h5>" +
-							"<h5>" + eventData.events[index].address + "</h5>" +
-							"<h5>" + eventData.events[index].category + "</h5>" +
-							"<h5>" + eventData.events[index].price + "</h5>" +
-							"<a href="+eventData.events[index].url+"> Learn More</a>"  +
-							"</span>" +
-						"</div>" +
-						"<div class='btnbox'>" +
-							"<button class='btn'><i class='fa-regular fa-star fa-lg'></i></button>" +
-							"<button class='btn'><i class='fa-regular fa-rectangle-list fa-lg'></i></i></button>" +
-							"<button class='btn'><i class='fa-solid fa-map fa-lg'></i></button>" +
-						"</div>" +
-					"</div>"
-			document.getElementById("eventinfo").innerHTML = info
+/*******Table Section Script*******/
+		var eventTabs = "",					//holds html of events
+		maxNumEventTabs = 10, 				//Max number of events per page
+		pages = [], 						//array of pages
+		pageNum = 0, 						//Holds the number of pages to be created
+		eventNum, 							//Used to create last page with remaining events
+		matchedEvents = [], 				//Array of indexes with matched Events
+		numMatchedEvents = eventData.events.length,	//numMatchedEvents holds the number of all events in eventData in the beginning, updated with filters
+		currentPage = 0, 					//Used to navigate between pages
+		currentEvent = 0					//Used to navigate between displayed events
+		categs = []							//Array of currently selected categories
+		pricing = []						//Array of currently selected pricings
+		date = []							//Array of currently selected dates
+
+		filterEvents()						//Displays the page
+
+		function filterEvents(){		
+			allEvents()						//Resets matchedEvents to all events
+			if(categs.length != 0)			//If categs is not empty, filter events via categories
+				filterCateg(categs)		
+			if(pricing.length != 0)			//If pricing is not empty, filter events via pricing
+				filterPricing(pricing)
+			if(date.length != 0)			//If date is not empty, filter events via date
+				filterDate(date)
+			matchedEvents.sort(function(a, b){
+				if(a > b) return 1
+				if(a < b) return -1
+				return 0
+			})
+			createPages()				
+			document.getElementById("events").innerHTML = pages[currentPage]	//Displays the current page
+			loadinfo(currentEvent)			//loads first event page on start up
 		}
 
-		function changePage(iter){	//Navigates through pages
-			if(currentPage + iter < 0)	//If pages goes out of bounds to the left, reset to first page
+		function createPages(){				//Creates and populates pages with matched events
+			pages = []
+			if(numMatchedEvents > 0){
+				if(numMatchedEvents % maxNumEventTabs == 0)		//Determines if an extra page is need for remaining events
+					pageNum = numMatchedEvents/maxNumEventTabs
+				else
+					pageNum = (numMatchedEvents/maxNumEventTabs) + 1	//Creates extra page for excess events
+				for (let i = 0; i < pageNum; i++){	//Populates current page iteration
+					eventTabs = ""
+					if(numMatchedEvents - (maxNumEventTabs * i) >= maxNumEventTabs)	//Number of events to be added to page
+						eventNum = maxNumEventTabs		
+					else
+						eventNum = numMatchedEvents - (maxNumEventTabs * i)	//If the remaining number of events is less than maxNumEventTabs, only create the remainig event tabs
+					for(let j = 0; j < eventNum; j++){	//Creates html of event tabs
+						eventTabs += 
+							"<div class='event' onclick='loadinfo(" + matchedEvents[(j + (i * maxNumEventTabs))] + ")'>" + 
+								((j + (i * maxNumEventTabs))+ 1) + ". " + eventData.events[matchedEvents[(j + (i * maxNumEventTabs))]].name + " " +
+								eventData.events[matchedEvents[(j + (i * maxNumEventTabs))]].date +
+							"</div>"
+					}
+					pages[i] = eventTabs	//HTML of event tabs added to current page
+					if(pages[i] == ""){		//Prevent Empty pages from being displayed
+						pages.pop()
+						pageNum--
+					}
+					document.getElementById("eventNum").innerHTML = "<h4>" + numMatchedEvents +
+															" events matched" + "</h4>"		//Displays number of events matched					
+				}
+			}else{
+				eventTabs = "No Events Found. Broaden Your Search Or Try Again Later"	//Default message when no events found
+				pages[0] = eventTabs
+				document.getElementById("eventNum").innerHTML = "Event List"		
+			}
+			
+			currentPage = 0					//Loads the first event of page onto the info section
+		}
+		
+		function loadinfo(index){			//Loads information of event at index onto the info section of the table
+			if(numMatchedEvents > 0){
+				info = 						//HTML of code to be loaded
+					"<div class='header'><h4>Information</h4></div>" +
+						"<div class='imgbox'>" +
+							"<img class='img' src=" + eventData.events[index].img + ">" +
+						"</div>" +
+						"<div class='infobox'>" +
+							"<div class='info'>" +
+								"<span>" +
+								"<h4>" + eventData.events[index].name + "</h4>" +
+								"<h5>" + eventData.events[index].date + "</h5>" +
+								"<h5>" + eventData.events[index].address + "</h5>" +
+								"<h5>" + eventData.events[index].category + "</h5>" +
+								"<h5>" + eventData.events[index].price + "</h5>" +
+								"</span>" +
+							"</div>" +
+							"<div class='btnbox'>" +
+								"<button class='btn'>" +
+									"<a href=" + eventData.events[index].url + ">" +
+									"<div>Read More</div>" +
+									"<i class='fa-regular fa-rectangle-list fa-lg'></i></a>" +
+								"</button>" +
+							"</div>" +
+						"</div>"
+				document.getElementById("eventinfo").innerHTML = info	//Loads the HTML
+			}else{							//Default Message when no events are found
+				info = 
+					"<div class='header'><h4>Information</h4></div>" +
+						"<div class='imgbox'>" +
+							"<img class='img' src='/img/logo.png''>" +
+						"</div>" +
+						"<div class='infobox'>" +
+							"<div class='info'>" +
+								"No Events Found" + 
+							"</div>" +
+						"</div>"
+					document.getElementById("eventinfo").innerHTML = info		
+			}
+			
+		}
+
+		function changePage(iter){			//Navigates through pages
+			if(currentPage + iter < 0)		//If pages goes out of bounds to the left, reset to first page
 				currentPage = 0
 			else if(currentPage + iter > pages.length - 1)	//If pages goes out of bounds to the right, reset to last page
 				currentPage = pages.length - 1
-			else	//increments or decrement slide index depending on button pressed
+			else							//increments or decrement slide index depending on button pressed
 				currentPage += iter
 			document.getElementById("events").innerHTML = pages[currentPage]	//displays page
 		}
 
-		function allEvents(){	//Resets the matchedEvents to all events
-			matchedEvents = []	//Resets matchedEvents
+		function allEvents(){				//Resets the matchedEvents to all events
+			matchedEvents = []				//Resets matchedEvents
 			for(let i = 0; i < eventData.events.length; i++){	//Stores every index
 				matchedEvents.push(i)
 			}
 			numMatchedEvents = matchedEvents.length		//Updates length of matchedEvents
 		}
 
-		function filterCateg(categs){	//Stores all indexes that match the categories chosen
-			var indexes = []			//array of matched Indexes
+		function filterCateg(categs){		//Stores all indexes that match the categories chosen
+			var indexes = []				//array of matched Indexes
 			for(let i = 0; i < categs.length; i++){		//iterates through the categories chosen
-				for(let j = 0; j < numMatchedEvents; j++)		//Iterates through all events
-					if(categs[i] == eventData.events[j].category){		//pushes index to array if matched
-						indexes.push(j)
+				for(let j = 0; j < numMatchedEvents; j++)	//Iterates through all events
+					if(categs[i] == eventData.events[matchedEvents[j]].category){	//pushes index to array if matched
+						indexes.push(matchedEvents[j])
 					}
 			}
-			matchedEvents = indexes.slice()		//matchedEvents copies indexes array
+			matchedEvents = indexes.slice()	//matchedEvents copies indexes array
 			numMatchedEvents = matchedEvents.length		//Update length of matchedEvents
 		}
 
 		function filterPricing(pricing){	//Stores all indexes that match the pricing chosen
-			var indexes = []		//array of matched Indexes
+			var indexes = []				//array of matched Indexes
 			for(let i = 0; i < pricing.length; i++){		//iterates through the pricing chosen
 				for(let j = 0; j < numMatchedEvents; j++){	
 						//Iterates through all events
-					if(pricing[i] == eventData.events[j].price)		//pushes index to array if matched
-						indexes.push(j)
-					if((pricing[i] == "Paid") && eventData.events[j].price.includes('$'))		//pushes index to array if matched
-						indexes.push(j)
-					if((pricing[i] == "Special") && ((eventData.events[j].price != "Free"))  == !(eventData.events[j].price.includes('$')))
-						indexes.push(j)
+					if(pricing[i] == eventData.events[matchedEvents[j]].price)	//pushes index to array if matched
+						indexes.push(matchedEvents[j])
+					if((pricing[i] == "Paid") && eventData.events[matchedEvents[j]].price.includes('$'))	//pushes index to array if matched
+						indexes.push(matchedEvents[j])
+					if((pricing[i] == "Special") && ((eventData.events[matchedEvents[j]].price != "Free"))  == !(eventData.events[matchedEvents[j]].price.includes('$')))
+						indexes.push(matchedEvents[j])
 				}
 			}
-			matchedEvents = indexes.slice()		//matchedEvents copies indexes array
+			matchedEvents = indexes.slice()	//matchedEvents copies indexes array
 			numMatchedEvents = matchedEvents.length		//Update length of matchedEvents
 		}
 
-		function filterDate(date){	//Stores all indexes that match the date chosen
-			var indexes = []		//array of matched Indexes
-			for(let i = 0; i < date.length; i++){		//iterates through the date chosen
-				for(let j = 0; j < numMatchedEvents; j++)		//Iterates through all events
-					if(date[i] == eventData.events[j].date){		//pushes index to array if matched
-						indexes.push(j)
-					}
-			}
-			matchedEvents = indexes			//matchedEvents copies indexes array
-			numMatchedEvents = indexes.length	//Update length of matchedEvents
-		}
+		/*function filterDate(date){		//Stores all indexes that match the dates chosen
 
-		
+		}*/
+
+		/*function dateFormatter(date) {	//dates are formatted to fit the required format
+
+		}*/
 
 		function toggleCateg(value){		//Toggles the category chosen
-			var index = categs.indexOf(value);	//Searches for index of category
+			var index = categs.indexOf(value)//Searches for index of category
 			if (index == -1) {				//If not found, add it to the array of categories
-				categs.push(value);
+				categs.push(value)
 			} else {						//Else, if found, remove from array
-				categs.splice(index, 1);
+				categs.splice(index, 1)
 			}
 			filterEvents()					//Updates the matchedEvents with categories chosen
 		}
 
 		function togglePricing(value){		//Toggles the pricing chosen
-			var index = pricing.indexOf(value);	//Searches for index of pricing
-			if (index == -1) {				//If not found, add it to the array of pricing
-				pricing.push(value);		
-			} else {						//Else, if found, remove from array
-				pricing.splice(index, 1);
+			var index = pricing.indexOf(value)//Searches for index of pricing
+			if(index == -1){				//If not found, add it to the array of pricing
+				pricing.push(value)		
+			}else{							//Else, if found, remove from array
+				pricing.splice(index, 1)
 			}
 			filterEvents()					//Updates the matchedEvents with pricing chosen
 		}
 
-		function toggleDate(value){			//Toggles the date chosen
-			var index = date.indexOf(value);	//Searches for index of date
-			if (index == -1) {				//If not found, add it to the array of dates
-				date.push(value);
-			} else {
-				date.splice(index, 1);		//Else, if found, remove from array
-			}
-			filterEvents()					//Updates the matchedEvents with date chosen
-		}
+		/*function toggleDate(value){		//Toggles the date chosen, can take two dates and will show the events in between
+
+		}*/
 
 		/*
 		function searchEvent(value){
@@ -432,7 +418,7 @@
 
 
 /*******buttons for info box*******/
-		function saveEvent(){	//Saves event on user database
+		/*function saveEvent(){	//Saves event on user database
 			if(!loggedIn){
 				//redirect to login page
 			}else{
@@ -443,9 +429,11 @@
 		function readMore(){
 
 		}
+
 		function showOnMap(){
 
-		}
+		}*/
+	
 	</script>
 </body>
 </html>
