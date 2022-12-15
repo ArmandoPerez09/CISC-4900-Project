@@ -19,7 +19,7 @@ Fazle Rabbi: Fazle.Rabbi67@bcmail.cuny.edu
 ## Github Link:
 https://github.com/ArmandoPerez09/CISC-4900-Project 
 
-## Website Link:
+## The website is deployed here:
 https://nyc-checklist.netlify.app/
 
 ## Description of the project:
