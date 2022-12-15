@@ -1,4 +1,4 @@
-# [NYC Checklist Website](https://nyc-checklist.netlify.app/)📍
+# [NYC Checklist Website](https://nyc-checklist.netlify.app/#)📍
  Members: Armando Perez, Bhel Charles, Devin Lin, Fazle Rabbi
  Supervisor: Anshul Nimje
  CISC 4900 Fall 2022
@@ -20,7 +20,7 @@ Fazle Rabbi: Fazle.Rabbi67@bcmail.cuny.edu
 https://github.com/ArmandoPerez09/CISC-4900-Project 
 
 ## The website is deployed here:
-https://nyc-checklist.netlify.app/
+https://nyc-checklist.netlify.app/#
 
 ## Description of the project:
 Many people struggle to find places to go out, places to eat, and find the "top things to do in NYC" to be oversaturated. The project is a website that allows visitors and locals to find anything in New York City, from enjoyable activities to top-notch restaurants and rooftop bars. Hidden gems that nobody has talked about. The website has a sign-in system, allowing each user to have their own account. On our website, we'll have personalized preferences for various users, allowing each one to see recommendations based on their prior preferences. This website aids those who are having trouble choosing a destination or finding things to do.
