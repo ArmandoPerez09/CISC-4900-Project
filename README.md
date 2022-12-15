@@ -1,4 +1,4 @@
-# NYC Checklist Website📍
+# [NYC Checklist Website](https://nyc-checklist.netlify.app/)📍
  Members: Armando Perez, Bhel Charles, Devin Lin, Fazle Rabbi
  Supervisor: Anshul Nimje
  CISC 4900 Fall 2022
@@ -18,6 +18,10 @@ Fazle Rabbi: Fazle.Rabbi67@bcmail.cuny.edu
 
 ## Github Link:
 https://github.com/ArmandoPerez09/CISC-4900-Project 
+
+## Website Link:
+https://nyc-checklist.netlify.app/
+
 ## Description of the project:
 Many people struggle to find places to go out, places to eat, and find the "top things to do in NYC" to be oversaturated. The project is a website that allows visitors and locals to find anything in New York City, from enjoyable activities to top-notch restaurants and rooftop bars. Hidden gems that nobody has talked about. The website has a sign-in system, allowing each user to have their own account. On our website, we'll have personalized preferences for various users, allowing each one to see recommendations based on their prior preferences. This website aids those who are having trouble choosing a destination or finding things to do.
 ## Objective:
@@ -171,8 +175,11 @@ FormSubmit is a very common and helpful feature on many websites, which enables 
 	A FAQ, or Frequently Asked Questions, is a section on a website that provides answers to common questions and queries from users. The purpose of a FAQ is to help users quickly and easily find information and solutions to their questions, without having to contact the website's support team or search through long and complex documents. For example, a FAQ on a NYC events website could provide users with tips and advice for finding the best events and venues in the city, as well as insider information and secrets about the events and their organizers. Overall, a FAQ is a useful and potentially interesting feature on a website, as it can provide users with valuable information and insights, and it can reflect the website's unique personality and culture. We have included the FAQ in the feedback page and on top of the feedback submission form in case it answers questions, so the user doesn't have to submit a form.
 Login / Sign up page design
 
-### Deployment
-	(how the website is being deployed)
+## Deployment
+We have used HTML, CSS, PHP, JavaScript and Sql to build this website. We have created a database that will store the values entered by the user.We also made sure that only users with valid credentials can login to our website. We have used HTML, CSS and JavaScript for client side and PHP for server side. We used Mamp pro which is a local host that is set up on our computer to upload the website on an online server. 
+
+We will be using Netlify to host our project, which is a cloud-based hosting service that specializes in static websites. It offers a number of features, including continuous deployment, global CDN, and automatic HTTPS, that make it easy to host and manage our website. Netlify also offers a number of tools for building and deploying our site, such as integration with Git. Overall, Netlify is our choice for hosting because it is easy to use and has powerful features.
+
 ## Bio sketch, member roles in this project.
 ### Armando Perez 
 was responsible for implementing the events features on our website. He selected the most relevant and popular events happening in NYC, and developed the functionality for displaying them on the site. He also worked on creating a trending page that would highlight the most popular content on the site, and created an option to sort them. Additionally, he organized regular meetings to review the status of our project. 
@@ -185,3 +192,11 @@ was responsible for developing the user login functionality for our website. Thi
 
 
 ### Pending features & unfinished implementations
+- We planned to include an option to add different boroughs, but decided to focus on perfecting one first. We chose Manhattan as our starting point because we believe it has the most events. In the future, we will add the option for users to select other boroughs on the main page.
+- We intended to allow users to save their favorite events to their account, so that they could easily access them each time they logged in. However, we were unable to implement this feature in time due to time constraints and had to remove it from the project. If we had more time, we would have implemented this feature.
+- Additional filters to add more variety for the user to select
+- Expanded registration form to take in user favorite categories as well a section to save store their saved events
+- Functional search bars to look up events directly. Plans to implement Knuth-Morris-Pratt String Matching Algorithm
+- On the map, Replace the Google API database with the event database generated from the web scraper. Create markers using event information
+- Sort the events by popularity 
+
